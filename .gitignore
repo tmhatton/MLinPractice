@@ -130,3 +130,6 @@ dmypy.json
 
 # exclude /data directory entirely
 /data/
+
+# exclude .idea directory
+/.idea/
