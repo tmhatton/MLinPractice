@@ -124,6 +124,9 @@ By default, this data is used to train a classifier, which is specified by one o
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
+- `-p` or `--precision`: Classification precision (i.e., fraction of relevant instances among the retrieved instances).
+- `-r` or `--recall`: Classification recall (i.e., fraction of relevant instances that were retrieved).
+- `-f1` or `--f1_score`: Classification F<sub>1</sub>-Score (i.e., the harmonic mean of precision and recall) .
 
 
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
