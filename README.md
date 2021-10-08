@@ -121,6 +121,7 @@ Here, `input.pickle` is a pickle file of the respective data subset, produced by
 
 By default, this data is used to train a classifier, which is specified by one of the following optional arguments:
 - `-m` or `--majority`: Majority vote classifier that always predicts the majority class.
+- `-rnd` or `--random`: Random classifier that samples uniformly from the available label (i.e. 50-50)
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
