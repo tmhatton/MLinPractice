@@ -19,6 +19,7 @@ parser.add_argument("-s", '--seed', type=int, help="seed for the random number g
 parser.add_argument("-e", "--export_file", help="export the trained classifier to the given location", default=None)
 parser.add_argument("-i", "--import_file", help="import a trained classifier from the given location", default=None)
 parser.add_argument("-m", "--majority", action="store_true", help="majority class classifier")
+parser.add_argument("-rnd", "--random", action="store_true", help="50-50 / Random classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
 parser.add_argument("-p", "--precision", action="store_true", help="evaluate using precision")
 parser.add_argument("-r", "--recall", action="store_true", help="evaluate using recall")
@@ -40,6 +41,10 @@ else:  # manually set up a classifier
         # majority vote classifier
         print("    majority vote classifier")
         classifier = DummyClassifier(strategy="most_frequent", random_state=args.seed)
+        classifier.fit(data["features"], data["labels"])
+    elif args.random:
+        print("    50-50 / random classifier")
+        classifier = DummyClassifier(strategy="uniform", random_state=args.seed)
         classifier.fit(data["features"], data["labels"])
 
 # now classify the given data
