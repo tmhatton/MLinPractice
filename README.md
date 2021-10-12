@@ -52,7 +52,7 @@ The script takes the following optional parameters:
 
 ### Classical Preprocessing
 
-The script `run_preprocessing.py` is used t o run various preprocessing steps on the raw data, producing additional columns in the csv file. It is executed as follows:
+The script `run_preprocessing.py` is used to run various preprocessing steps on the raw data, producing additional columns in the csv file. It is executed as follows:
 ```python -m code.preprocessing.run_preprocessing path/to/input.csv path/to/output.csv```
 Here, `input.csv` is a csv file (ideally the output of `create_labels.py`), while `output.csv` is the csv file where the output will be written.
 The preprocessing steps to take can be configured with the following flags:
