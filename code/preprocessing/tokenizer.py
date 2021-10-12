@@ -9,7 +9,7 @@ Created on Mon Oct 11 16:11:51 2021
 @author:
 """
 
-from preprocessing.preprocessor import Preprocessor
+from code.preprocessing.preprocessor import Preprocessor
 import nltk
 
 
