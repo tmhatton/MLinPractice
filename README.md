@@ -128,6 +128,7 @@ The classifier is then evaluated, using the evaluation metrics as specified thro
 - `-p` or `--precision`: Classification precision (i.e., fraction of relevant instances among the retrieved instances).
 - `-r` or `--recall`: Classification recall (i.e., fraction of relevant instances that were retrieved).
 - `-f1` or `--f1_score`: Classification F<sub>1</sub>-Score (i.e., the harmonic mean of precision and recall) .
+- `-c` or `--cohen`: Classification Cohen's Kappa (i.e. the inter-annotator agreement).
 
 
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
