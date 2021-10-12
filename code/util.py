@@ -19,3 +19,4 @@ COLUMN_PUNCTUATION = "tweet_no_punctuation"
 
 SUFFIX_TOKENIZED = "_tokenized"
 SUFFIX_CHAR_LENGTH = "_char_length"
+SUFFIX_TOKEN_LENGTH = "_token_length"
