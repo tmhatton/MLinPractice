@@ -14,7 +14,8 @@ import numpy as np
 from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
 from code.feature_extraction.token_length import TokenLength
-from code.util import COLUMN_TWEET, COLUMN_LABEL
+from code.feature_extraction.hashtag_num import HashtagNum
+from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
@@ -24,13 +25,14 @@ parser.add_argument("-e", "--export_file", help="create a pipeline and export to
 parser.add_argument("-i", "--import_file", help="import an existing pipeline from the given location", default=None)
 parser.add_argument("-c", "--char_length", action="store_true", help="compute the number of characters in the tweet")
 parser.add_argument("-t", "--token_length", action="store_true", help="compute the number of words/tokens in the tweet")
+parser.add_argument("--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
 args = parser.parse_args()
 
 # load data
 df = pd.read_csv(args.input_file, quoting=csv.QUOTE_NONNUMERIC, lineterminator="\n")
 
 if args.import_file is not None:
-    # simply import an exisiting FeatureCollector
+    # simply import an existing FeatureCollector
     with open(args.import_file, "rb") as f_in:
         feature_collector = pickle.load(f_in)
 
@@ -44,6 +46,9 @@ else:  # need to create FeatureCollector manually
     if args.token_length:
         # word/token length of original tweet (without any changes)
         features.append(TokenLength(COLUMN_TWEET))
+    if args.hashtag_num:
+        # number of hashtags of original tweet data from hashtags column
+        features.append(HashtagNum(COLUMN_HASHTAGS))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
