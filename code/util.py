@@ -12,6 +12,7 @@ Created on Wed Sep 29 10:50:36 2021
 COLUMN_TWEET = "tweet"
 COLUMN_LIKES = "likes_count"
 COLUMN_RETWEETS = "retweets_count"
+COLUMN_HASHTAGS = "hashtags"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
@@ -20,3 +21,4 @@ COLUMN_PUNCTUATION = "tweet_no_punctuation"
 SUFFIX_TOKENIZED = "_tokenized"
 SUFFIX_CHAR_LENGTH = "_char_length"
 SUFFIX_TOKEN_LENGTH = "_token_length"
+SUFFIX_HASHTAG_NUM = "_hashtag_num"
