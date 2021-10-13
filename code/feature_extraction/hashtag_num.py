@@ -2,6 +2,7 @@
 Extracts the number of hashtags from the tweet
 """
 import ast
+import numpy as np
 
 from code.feature_extraction.feature_extractor import FeatureExtractor
 from code.util import COLUMN_TWEET, COLUMN_HASHTAGS, SUFFIX_HASHTAG_NUM
@@ -23,6 +24,8 @@ class HashtagNum(FeatureExtractor):
         for tweet in inputs[0]:
             hashtag_list = ast.literal_eval(tweet)
             nums_of_hashtags.append(len(hashtag_list))
+
+        nums_of_hashtags = np.array(nums_of_hashtags).reshape(-1, 1)
 
         return nums_of_hashtags
 
