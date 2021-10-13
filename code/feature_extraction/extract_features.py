@@ -25,7 +25,7 @@ parser.add_argument("-e", "--export_file", help="create a pipeline and export to
 parser.add_argument("-i", "--import_file", help="import an existing pipeline from the given location", default=None)
 parser.add_argument("-c", "--char_length", action="store_true", help="compute the number of characters in the tweet")
 parser.add_argument("-t", "--token_length", action="store_true", help="compute the number of words/tokens in the tweet")
-parser.add_argument("-h", "--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
+parser.add_argument("--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
 args = parser.parse_args()
 
 # load data
