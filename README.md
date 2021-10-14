@@ -129,6 +129,7 @@ By default, this data is used to train a classifier, which is specified by one o
 - `-rnd` or `--random`: Random classifier that samples uniformly from the available label (i.e. 50-50).
 - `-at` or `--always_true`: Always 'True' classifier that predicts 'True' for all inputs.
 - `-af` or `--always_false`: Always 'False' classifier that predicts 'False' for all inputs.
+- `-lf` or `--label_frequency`: Label frequency classifier that predicts labels based on the training sets label distribution.
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
