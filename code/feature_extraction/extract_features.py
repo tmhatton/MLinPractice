@@ -13,9 +13,10 @@ import pandas as pd
 import numpy as np
 from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
+from code.feature_extraction.mention_num import MentionNum
 from code.feature_extraction.token_length import TokenLength
 from code.feature_extraction.hashtag_num import HashtagNum
-from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS
+from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
@@ -26,6 +27,7 @@ parser.add_argument("-i", "--import_file", help="import an existing pipeline fro
 parser.add_argument("-c", "--char_length", action="store_true", help="compute the number of characters in the tweet")
 parser.add_argument("-t", "--token_length", action="store_true", help="compute the number of words/tokens in the tweet")
 parser.add_argument("--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
+parser.add_argument("-m", "--mention_num", action="store_true", help="compute the number of mentions in the tweet")
 args = parser.parse_args()
 
 # load data
@@ -49,6 +51,9 @@ else:  # need to create FeatureCollector manually
     if args.hashtag_num:
         # number of hashtags of original tweet data from hashtags column
         features.append(HashtagNum(COLUMN_HASHTAGS))
+    if args.mention_num:
+        # number of features of original tweet data from mentions column
+        features.append(MentionNum(COLUMN_MENTIONS))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
