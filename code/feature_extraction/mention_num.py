@@ -10,7 +10,7 @@ from code.util import COLUMN_TWEET, COLUMN_MENTIONS, SUFFIX_MENTION_NUM
 
 class MentionNum(FeatureExtractor):
     """
-    Class to extract the number of hashtags from a tweet
+    Class to extract the number of mentions from a tweet
     """
 
     def __init__(self, input_column=COLUMN_MENTIONS):
