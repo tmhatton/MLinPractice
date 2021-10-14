@@ -21,6 +21,7 @@ parser.add_argument("-i", "--import_file", help="import a trained classifier fro
 parser.add_argument("-m", "--majority", action="store_true", help="majority class classifier")
 parser.add_argument("-rnd", "--random", action="store_true", help="50-50 / Random classifier")
 parser.add_argument("-at", "--always_true", action="store_true", help="Always 'True' classifier")
+parser.add_argument("-lf", "--label_frequency", action="store_true", help="Label Frequency classifier")
 parser.add_argument("-af", "--always_false", action="store_true", help="Always 'False' classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
 parser.add_argument("-p", "--precision", action="store_true", help="evaluate using precision")
@@ -56,6 +57,10 @@ else:  # manually set up a classifier
     elif args.always_false:
         print("    always 'false' classifier")
         classifier = DummyClassifier(strategy="constant", random_state=args.seed, constant=0)
+        classifier.fit(data["features"], data["labels"])
+    elif args.label_frequency:
+        print("    label frequency classifier")
+        classifier = DummyClassifier(strategy="stratified", random_state=args.seed)
         classifier.fit(data["features"], data["labels"])
 
 # now classify the given data
