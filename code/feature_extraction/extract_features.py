@@ -16,7 +16,8 @@ from code.feature_extraction.feature_collector import FeatureCollector
 from code.feature_extraction.mention_num import MentionNum
 from code.feature_extraction.token_length import TokenLength
 from code.feature_extraction.hashtag_num import HashtagNum
-from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS
+from code.feature_extraction.url_num import URLsNum
+from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
@@ -28,6 +29,7 @@ parser.add_argument("-c", "--char_length", action="store_true", help="compute th
 parser.add_argument("-t", "--token_length", action="store_true", help="compute the number of words/tokens in the tweet")
 parser.add_argument("--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
 parser.add_argument("-m", "--mention_num", action="store_true", help="compute the number of mentions in the tweet")
+parser.add_argument("-u", "--url_num", action="store_true", help="compute the number of URLs in the tweet")
 args = parser.parse_args()
 
 # load data
@@ -52,8 +54,11 @@ else:  # need to create FeatureCollector manually
         # number of hashtags of original tweet data from hashtags column
         features.append(HashtagNum(COLUMN_HASHTAGS))
     if args.mention_num:
-        # number of features of original tweet data from mentions column
+        # number of mentions of original tweet data from mentions column
         features.append(MentionNum(COLUMN_MENTIONS))
+    if args.url_num:
+        # number of URLs of original tweet data from urls column
+        features.append(URLsNum(COLUMN_URLS))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
