@@ -10,7 +10,7 @@ Created on Wed Sep 29 14:23:48 2021
 
 import argparse, pickle
 from sklearn.dummy import DummyClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, cohen_kappa_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, cohen_kappa_score, log_loss
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Classifier")
@@ -27,6 +27,7 @@ parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate usin
 parser.add_argument("-p", "--precision", action="store_true", help="evaluate using precision")
 parser.add_argument("-r", "--recall", action="store_true", help="evaluate using recall")
 parser.add_argument("-c", "--cohen", action="store_true", help="evaluate using cohen's kappa")
+parser.add_argument("-l", "--log_loss", action="store_true", help="evaluate using the log loss")
 parser.add_argument("-f1", "--f1_score", action="store_true", help="evaluate using f1")
 args = parser.parse_args()
 
@@ -77,7 +78,10 @@ if args.recall:
 if args.f1_score:
     evaluation_metrics.append(("f1_score", f1_score))
 if args.cohen:
-    evaluation_metrics.append(("cohen_kappa_score", cohen_kappa_score ))
+    evaluation_metrics.append(("cohen_kappa_score", cohen_kappa_score))
+if args.log_loss:
+    evaluation_metrics.append(("log_loss", log_loss))
+
 
 # compute and print them
 for metric_name, metric in evaluation_metrics:
