@@ -27,6 +27,8 @@ SUFFIX_TOKEN_LENGTH = "_token_length"
 SUFFIX_HASHTAG_NUM = "_hashtag_num"
 SUFFIX_MENTION_NUM = "_mention_num"
 SUFFIX_URL_NUM = "_url_num"
+SUFFIX_PUNC_NUM = "_punc_num"
+SUFFIX_CAP_LETTERS = "_cap_letters_num"
 
 # Weekday dictionary
 ISO_WEEKDAYS = {1: "Mon",
