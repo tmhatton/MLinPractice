@@ -11,8 +11,8 @@ class TokenLengthTest(unittest.TestCase):
         self.extractor = TokenLength(self.INPUT_COLUMN)
 
     def test_character_length(self):
-        input_text = "This is an example sentence which is to be tokenized and counted"
-        output = [12]
+        input_text = "['This', 'is', 'an', 'example', 'sentence']"
+        output = [5]
 
         input_df = pd.DataFrame()
         input_df[self.INPUT_COLUMN] = [input_text]
