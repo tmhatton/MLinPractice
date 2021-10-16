@@ -90,7 +90,8 @@ The features to be extracted can be configured with the following optional param
 - `--hashtag_num`: Count the number of hashtags in the "hashtags" column of the data frame. (see code.feature_extraction/hashtag_num.py)
 - `-m` or `--mention_num`: Count the number of mentions in the "mentions" column of the data frame. (see code.feature_extraction/mention_num.py)
 - `-u` or `--url_num`: Count the number of URLs in the "urls" column of the data frame. (see code.feature_extraction/url_num.py)
-
+- `--cap_letter`: Count the number of capital letters in the "tweet" column of the data frame. (see code/feature_extraction/cap_letter_num.py)
+  
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
 - `-e` or `--export_file`: Export the configured and fitted feature extraction into the given pickle file.
