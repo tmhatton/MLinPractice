@@ -17,7 +17,9 @@ from code.feature_extraction.mention_num import MentionNum
 from code.feature_extraction.token_length import TokenLength
 from code.feature_extraction.hashtag_num import HashtagNum
 from code.feature_extraction.url_num import URLsNum
-from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS
+from code.feature_extraction.tweet_language import TweetLanguage
+from code.feature_extraction.weekday_extractor import WeekdayExtractor
+from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
@@ -30,6 +32,7 @@ parser.add_argument("-t", "--token_length", action="store_true", help="compute t
 parser.add_argument("--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
 parser.add_argument("-m", "--mention_num", action="store_true", help="compute the number of mentions in the tweet")
 parser.add_argument("-u", "--url_num", action="store_true", help="compute the number of URLs in the tweet")
+parser.add_argument("-w", "--weekday", action="store_true", help="extract the one-hot encoded weekday of the tweet's date")
 args = parser.parse_args()
 
 # load data
@@ -59,6 +62,8 @@ else:  # need to create FeatureCollector manually
     if args.url_num:
         # number of URLs of original tweet data from urls column
         features.append(URLsNum(COLUMN_URLS))
+    if args.weekday:
+        features.append(WeekdayExtractor(COLUMN_DATE))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
