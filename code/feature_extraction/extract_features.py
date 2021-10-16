@@ -19,7 +19,6 @@ from code.feature_extraction.hashtag_num import HashtagNum
 from code.feature_extraction.url_num import URLsNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
-from code.feature_extraction.det_language import DetermineLanguage
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS
 
 # setting up CLI
@@ -65,6 +64,9 @@ else:  # need to create FeatureCollector manually
     if args.url_num:
         # number of URLs of original tweet data from urls column
         features.append(URLsNum(COLUMN_URLS))
+    if args.punc_num:
+        # number of punctuation characters in original tweet (without any changes)
+        features.append(PunctuationNum(COLUMN_TWEET))
     if args.cap_letter:
         features.append(CapLettersNum(COLUMN_TWEET))
         # number of capital letters in original tweet (without any changes)
