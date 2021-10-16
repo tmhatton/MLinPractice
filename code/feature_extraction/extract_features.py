@@ -30,6 +30,7 @@ parser.add_argument("-t", "--token_length", action="store_true", help="compute t
 parser.add_argument("--hashtag_num", action="store_true", help="compute the number hashtags in the tweet")
 parser.add_argument("-m", "--mention_num", action="store_true", help="compute the number of mentions in the tweet")
 parser.add_argument("-u", "--url_num", action="store_true", help="compute the number of URLs in the tweet")
+parser.add_argument("-p", "--punc_num", action="store_true", help="compute the number of punctuation characters in the tweet")
 args = parser.parse_args()
 
 # load data
@@ -59,6 +60,9 @@ else:  # need to create FeatureCollector manually
     if args.url_num:
         # number of URLs of original tweet data from urls column
         features.append(URLsNum(COLUMN_URLS))
+    if args.punc_num:
+        # number of punctuation characters in original tweet (without any changes)
+        features.append(PunctuationNum(COLUMN_TWEET))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
