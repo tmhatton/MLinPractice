@@ -15,6 +15,7 @@ COLUMN_RETWEETS = "retweets_count"
 COLUMN_HASHTAGS = "hashtags"
 COLUMN_MENTIONS = "mentions"
 COLUMN_URLS = "urls"
+COLUMN_DATE = "date"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
@@ -28,3 +29,23 @@ SUFFIX_MENTION_NUM = "_mention_num"
 SUFFIX_URL_NUM = "_url_num"
 SUFFIX_PUNC_NUM = "_punc_num"
 SUFFIX_CAP_LETTERS = "_cap_letters_num"
+
+# Weekday dictionary
+ISO_WEEKDAYS = {1: "Mon",
+                2: "Tue",
+                3: "Wed",
+                4: "Thu",
+                5: "Fri",
+                6: "Sat",
+                7: "Sun"}
+
+
+def flatten(t):
+    flat_list = []
+    for sublist in t:
+        if isinstance(sublist, list):
+            for item in sublist:
+                flat_list.append(item)
+        else:
+            flat_list.append(sublist)
+    return flat_list

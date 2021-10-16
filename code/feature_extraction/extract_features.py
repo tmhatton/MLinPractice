@@ -19,7 +19,8 @@ from code.feature_extraction.hashtag_num import HashtagNum
 from code.feature_extraction.url_num import URLsNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
-from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS
+from code.feature_extraction.weekday_extractor import WeekdayExtractor
+from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
@@ -34,7 +35,7 @@ parser.add_argument("-m", "--mention_num", action="store_true", help="compute th
 parser.add_argument("-u", "--url_num", action="store_true", help="compute the number of URLs in the tweet")
 parser.add_argument("--cap_letter", action="store_true", help="compute the number of capital letters in the tweet")
 parser.add_argument("-p", "--punc_num", action="store_true", help="compute the number punctuation characters in the tweet")
-
+parser.add_argument("-w", "--weekday", action="store_true", help="extract the one-hot encoded weekday of the tweet's date")
 args = parser.parse_args()
 
 # load data
@@ -70,6 +71,9 @@ else:  # need to create FeatureCollector manually
     if args.cap_letter:
         features.append(CapLettersNum(COLUMN_TWEET))
         # number of capital letters in original tweet (without any changes)
+    if args.weekday:
+        # extract and one-hot-encode the weekday from the date of the tweet
+        features.append(WeekdayExtractor(COLUMN_DATE))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
