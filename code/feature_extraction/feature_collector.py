@@ -10,6 +10,7 @@ Created on Wed Sep 29 12:36:01 2021
 
 import numpy as np
 from code.feature_extraction.feature_extractor import FeatureExtractor
+from code.util import flatten
 
 # extend FeatureExtractor for the sake of simplicity
 class FeatureCollector(FeatureExtractor):
@@ -53,4 +54,4 @@ class FeatureCollector(FeatureExtractor):
         feature_names = []
         for feature in self._features:
             feature_names.append(feature.get_feature_name())
-        return feature_names
+        return flatten(feature_names)
