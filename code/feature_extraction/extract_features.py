@@ -21,7 +21,7 @@ from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE, \
-    SUFFIX_TOKENIZED
+    SUFFIX_TOKENIZED, COLUMN_STOPWORDS
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
@@ -57,6 +57,7 @@ else:  # need to create FeatureCollector manually
     if args.token_length:
         # token length of tokenized tweet
         features.append(TokenLength(COLUMN_TWEET + SUFFIX_TOKENIZED))
+        features.append(TokenLength(COLUMN_STOPWORDS))
     if args.hashtag_num:
         # number of hashtags of original tweet data from hashtags column
         features.append(HashtagNum(COLUMN_HASHTAGS))

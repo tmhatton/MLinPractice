@@ -27,7 +27,6 @@ class TokenLength(FeatureExtractor):
             nums_of_tokens.append(len(token_list))
 
         nums_of_tokens = np.array(nums_of_tokens).reshape(-1, 1)
-        print(nums_of_tokens)
 
         return nums_of_tokens
         # token_lengths = []

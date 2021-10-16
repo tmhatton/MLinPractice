@@ -10,7 +10,7 @@ class TokenLengthTest(unittest.TestCase):
         self.INPUT_COLUMN = "input"
         self.extractor = TokenLength(self.INPUT_COLUMN)
 
-    def test_character_length(self):
+    def test_token_length(self):
         input_text = "['This', 'is', 'an', 'example', 'sentence']"
         output = [5]
 
