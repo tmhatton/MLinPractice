@@ -20,6 +20,7 @@ from code.feature_extraction.url_num import URLsNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
+from code.feature_extraction.sentiment import Sentiment
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE, \
     SUFFIX_TOKENIZED, COLUMN_STOPWORDS
 
@@ -37,6 +38,7 @@ parser.add_argument("-u", "--url_num", action="store_true", help="compute the nu
 parser.add_argument("--cap_letter", action="store_true", help="compute the number of capital letters in the tweet")
 parser.add_argument("-p", "--punc_num", action="store_true", help="compute the number punctuation characters in the tweet")
 parser.add_argument("-w", "--weekday", action="store_true", help="extract the one-hot encoded weekday of the tweet's date")
+parser.add_argument("-s", "--sentiment", action="store_true", help="compute the sentiment (i.e. polarity and subjectivity) of the tweet")
 args = parser.parse_args()
 
 # load data
@@ -76,6 +78,9 @@ else:  # need to create FeatureCollector manually
     if args.weekday:
         # extract and one-hot-encode the weekday from the date of the tweet
         features.append(WeekdayExtractor(COLUMN_DATE))
+    if args.sentiment:
+        # extract and one-hot-encode the weekday from the date of the tweet
+        features.append(Sentiment(COLUMN_TWEET))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
