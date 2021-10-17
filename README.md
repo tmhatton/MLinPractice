@@ -132,6 +132,7 @@ By default, this data is used to train a classifier, which is specified by one o
 - `-at` or `--always_true`: Always 'True' classifier that predicts 'True' for all inputs.
 - `-af` or `--always_false`: Always 'False' classifier that predicts 'False' for all inputs.
 - `-lf` or `--label_frequency`: Label frequency classifier that predicts labels based on the training sets label distribution.
+- `-knn` + `value of k/ int`: K-Nearest Neighbor classifier that predicts labels based on the k-nearest neighbours in the feature space"
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
