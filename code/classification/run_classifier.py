@@ -11,6 +11,9 @@ Created on Wed Sep 29 14:23:48 2021
 import argparse, pickle
 from sklearn.dummy import DummyClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, cohen_kappa_score, log_loss
+from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import make_pipeline
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Classifier")
@@ -21,6 +24,7 @@ parser.add_argument("-i", "--import_file", help="import a trained classifier fro
 parser.add_argument("-m", "--majority", action="store_true", help="majority class classifier")
 parser.add_argument("-rnd", "--random", action="store_true", help="50-50 / Random classifier")
 parser.add_argument("-at", "--always_true", action="store_true", help="Always 'True' classifier")
+parser.add_argument("--knn", type = int, help = "k-nearest neighbor classifier with the specified value of k", default = None)
 parser.add_argument("-lf", "--label_frequency", action="store_true", help="Label Frequency classifier")
 parser.add_argument("-af", "--always_false", action="store_true", help="Always 'False' classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
@@ -60,9 +64,16 @@ else:  # manually set up a classifier
         classifier = DummyClassifier(strategy="constant", random_state=args.seed, constant=0)
         classifier.fit(data["features"], data["labels"])
     elif args.label_frequency:
+        # label frequency classifier
         print("    label frequency classifier")
         classifier = DummyClassifier(strategy="stratified", random_state=args.seed)
         classifier.fit(data["features"], data["labels"])
+    elif args.knn is not None:
+        print("    {0} nearest neighbor classifier".format(args.knn))
+        standardizer = StandardScaler()
+        knn_classifier = KNeighborsClassifier(args.knn)
+        classifier = make_pipeline(standardizer, knn_classifier)
+        classifier.fit(data["features"], data["labels"].ravel())
 
 # now classify the given data
 prediction = classifier.predict(data["features"])

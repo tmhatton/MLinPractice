@@ -24,6 +24,7 @@ from code.feature_extraction.sentiment import Sentiment
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE, \
     SUFFIX_TOKENIZED, COLUMN_STOPWORDS
 
+
 # setting up CLI
 parser = argparse.ArgumentParser(description="Feature Extraction")
 parser.add_argument("input_file", help="path to the input csv file")
