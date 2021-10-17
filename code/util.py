@@ -50,3 +50,4 @@ def flatten(t):
         else:
             flat_list.append(sublist)
     return flat_list
+

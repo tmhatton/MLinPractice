@@ -94,6 +94,8 @@ The features to be extracted can be configured with the following optional param
 - `-p` or `--punc_num`: Count the number of punctutation characters in the "tweet" column of the data frame. (see code/feature_extraction/punc_num.py)
 - `--cap_letter`: Count the number of capital letters in the "tweet" column of the data frame. (see code/feature_extraction/cap_letter_num.py)
 - `-w` or `--weekday`: Extract the one-hot-encoded weekday from the "date" column of the data frame (see code.feature_extraction/weekday_extractor.py)
+
+
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
 - `-e` or `--export_file`: Export the configured and fitted feature extraction into the given pickle file.
@@ -133,6 +135,7 @@ By default, this data is used to train a classifier, which is specified by one o
 - `-at` or `--always_true`: Always 'True' classifier that predicts 'True' for all inputs.
 - `-af` or `--always_false`: Always 'False' classifier that predicts 'False' for all inputs.
 - `-lf` or `--label_frequency`: Label frequency classifier that predicts labels based on the training sets label distribution.
+- `-knn` + `value of k/ int`: K-Nearest Neighbor classifier that predicts labels based on the k-nearest neighbours in the feature space"
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
