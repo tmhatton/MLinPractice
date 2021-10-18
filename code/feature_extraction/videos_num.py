@@ -22,9 +22,8 @@ class VideosNum(FeatureExtractor):
     def _get_values(self, inputs):
         nums_of_videos = []
 
-        for tweet in inputs[0]:
-            video_list = ast.literal_eval(tweet)
-            nums_of_videos.append(video_list)
+        for videos in inputs[0]:
+            nums_of_videos.append(videos)
 
         nums_of_videos = np.array(nums_of_videos).reshape(-1, 1)
 
