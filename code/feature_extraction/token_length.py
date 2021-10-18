@@ -2,6 +2,7 @@
 Token length feature extractor:
 Extracts the length of tokens for each tweet
 """
+import ast
 import numpy as np
 
 from code.feature_extraction.feature_extractor import FeatureExtractor
@@ -19,11 +20,20 @@ class TokenLength(FeatureExtractor):
 
     # compute the word length based on the inputs
     def _get_values(self, inputs):
-        token_lengths = []
+        nums_of_tokens = []
 
         for tweet in inputs[0]:
-            token_lengths.append(len(tweet.split()))
+            token_list = ast.literal_eval(tweet)
+            nums_of_tokens.append(len(token_list))
 
-        token_lengths = np.array(token_lengths).reshape(-1, 1)
+        nums_of_tokens = np.array(nums_of_tokens).reshape(-1, 1)
 
-        return token_lengths
+        return nums_of_tokens
+        # token_lengths = []
+        #
+        # for tweet in inputs[0]:
+        #     token_lengths.append(len(tweet.split()))
+        #
+        # token_lengths = np.array(token_lengths).reshape(-1, 1)
+        #
+        # return token_lengths

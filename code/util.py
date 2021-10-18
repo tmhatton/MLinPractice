@@ -16,10 +16,12 @@ COLUMN_HASHTAGS = "hashtags"
 COLUMN_MENTIONS = "mentions"
 COLUMN_URLS = "urls"
 COLUMN_PHOTOS = "photos"
+COLUMN_DATE = "date"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
 COLUMN_PUNCTUATION = "tweet_no_punctuation"
+COLUMN_STOPWORDS = "tweet_no_stopwords"
 
 SUFFIX_TOKENIZED = "_tokenized"
 SUFFIX_CHAR_LENGTH = "_char_length"
@@ -30,3 +32,26 @@ SUFFIX_URL_NUM = "_url_num"
 SUFFIX_PUNC_NUM = "_punc_num"
 SUFFIX_CAP_LETTERS = "_cap_letters_num"
 SUFFIX_PHOTOS_NUM = "_photos_num"
+
+# Weekday dictionary
+ISO_WEEKDAYS = {1: "Mon",
+                2: "Tue",
+                3: "Wed",
+                4: "Thu",
+                5: "Fri",
+                6: "Sat",
+                7: "Sun"}
+
+
+def flatten(t):
+    flat_list = []
+    for sublist in t:
+        if isinstance(sublist, list):
+            for item in sublist:
+                flat_list.append(item)
+        else:
+            flat_list.append(sublist)
+    return flat_list
+
+FEATURE_SENTIMENT = "sentiment"
+

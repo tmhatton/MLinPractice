@@ -58,6 +58,7 @@ Here, `input.csv` is a csv file (ideally the output of `create_labels.py`), whil
 The preprocessing steps to take can be configured with the following flags:
 - `-p` or `--punctuation`: A new column "tweet_no_punctuation" is created, where all punctuation is removed from the original tweet. (See `code/preprocessing/punctuation_remover.py` for more details)
 - `-t` or `--tokenize`: Tokenize a given column (can be specified by `--tokenize_input`, default = "tweet"), and create new column with suffix "_tokenized" containing tokenized tweet. 
+- `-sw` or `--stopwords`: Remove stopwords from either the tweet or tweet_tokenized column (only if `--tokenize` is also used in the pipeline), and create new column "tweet_no_stopwords" containing the list of remaining words / tokens of the tweet.
 
 Moreover, the script accepts the following optional parameters:
 - `-e` or `--export` gives the path to a pickle file where an sklearn pipeline of the different preprocessing steps will be stored for later usage.
@@ -93,6 +94,9 @@ The features to be extracted can be configured with the following optional param
 - `-p` or `--punc_num`: Count the number of punctutation characters in the "tweet" column of the data frame. (see code/feature_extraction/punc_num.py)
 - `--cap_letter`: Count the number of capital letters in the "tweet" column of the data frame. (see code/feature_extraction/cap_letter_num.py)
 - `--photos_num`: Count the number of photos in the "photos" column of the data frame. (see code/feature_extraction/photos_num.py)
+- `-w` or `--weekday`: Extract the one-hot-encoded weekday from the "date" column of the data frame (see code.feature_extraction/weekday_extractor.py)
+- `-s` or `--sentiment`: Calculates the sentiment, i.e. polarity and subjectivity, from the "tweet" column of the data frame (see code/feature_extraction/sentiment.py)
+
 
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
