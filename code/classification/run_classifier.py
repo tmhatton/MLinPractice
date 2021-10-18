@@ -16,7 +16,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.svm import SVC
 from sklearn.ensemble import RandomForestClassifier
-
+from sklearn.naive_bayes import GaussianNB
 
 
 # setting up CLI
@@ -33,6 +33,7 @@ parser.add_argument("-lf", "--label_frequency", action="store_true", help="Label
 parser.add_argument("-af", "--always_false", action="store_true", help="Always 'False' classifier")
 parser.add_argument("-svm", "--support_vector_machine", action="store_true", help="Support Vector Machines classifier")
 parser.add_argument("-rf", "--random_forest", action="store_true", help="Random Forest classifier")
+parser.add_argument("-nb", "--naive_bayes", action="store_true", help="Naive Bayes classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
 parser.add_argument("-p", "--precision", action="store_true", help="evaluate using precision")
 parser.add_argument("-r", "--recall", action="store_true", help="evaluate using recall")
@@ -89,6 +90,10 @@ else:  # manually set up a classifier
         standardizer = StandardScaler()
         rf_classifier = RandomForestClassifier(n_estimators = 1000)
         classifier = make_pipeline(standardizer, rf_classifier)
+        classifier.fit(data["features"], data["labels"].ravel())
+    elif args.naive_bayes:
+        print("    Naive Bayes classifier")
+        classifier = GaussianNB()
         classifier.fit(data["features"], data["labels"].ravel())
 
 # now classify the given data
