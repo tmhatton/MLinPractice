@@ -93,8 +93,11 @@ The features to be extracted can be configured with the following optional param
 - `-u` or `--url_num`: Count the number of URLs in the "urls" column of the data frame. (see code.feature_extraction/url_num.py)
 - `-p` or `--punc_num`: Count the number of punctutation characters in the "tweet" column of the data frame. (see code/feature_extraction/punc_num.py)
 - `--cap_letter`: Count the number of capital letters in the "tweet" column of the data frame. (see code/feature_extraction/cap_letter_num.py)
+- `--photos_num`: Count the number of photos in the "photos" column of the data frame. (see code/feature_extraction/photos_num.py)
 - `-w` or `--weekday`: Extract the one-hot-encoded weekday from the "date" column of the data frame (see code.feature_extraction/weekday_extractor.py)
 - `-s` or `--sentiment`: Calculates the sentiment, i.e. polarity and subjectivity, from the "tweet" column of the data frame (see code/feature_extraction/sentiment.py)
+
+
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
 - `-e` or `--export_file`: Export the configured and fitted feature extraction into the given pickle file.
