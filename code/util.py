@@ -18,6 +18,7 @@ COLUMN_URLS = "urls"
 COLUMN_PHOTOS = "photos"
 COLUMN_DATE = "date"
 COLUMN_VIDEOS = "video"
+COLUMN_LANGUAGE = "language"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
