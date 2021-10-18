@@ -100,7 +100,7 @@ The features to be extracted can be configured with the following optional param
 - `--videos_num`: Count the number of attached videos in the "videos" column of the data frame. (see code/feature_extraction/videos_num.py)
 - `-w` or `--weekday`: Extract the one-hot-encoded weekday from the "date" column of the data frame (see code.feature_extraction/weekday_extractor.py)
 - `-s` or `--sentiment`: Calculates the sentiment, i.e. polarity and subjectivity, from the "tweet" column of the data frame (see code/feature_extraction/sentiment.py)
-
+- `-tod` or `--times_of_day`: Extracts the one-hot encoded times of day from the "time" column of the data frame. (see code/feature_extraction/times_of_day.py) 
 
 Moreover, the script support importing and exporting fitted feature extractors with the following optional arguments:
 - `-i` or `--import_file`: Load a configured and fitted feature extraction from the given pickle file. Ignore all parameters that configure the features to extract.
