@@ -13,7 +13,7 @@ class Filter:
         :param df: The data frame to clean.
         :return: The data frame without the rows that do not meet the filter criterion.
         """
-        pass
+        return df.drop(self._get_indices_to_remove(df))
 
     def _get_indices_to_remove(self, df: pd.DataFrame) -> pd.Index:
         """

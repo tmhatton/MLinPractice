@@ -30,7 +30,7 @@ class LanguageFilterTest(unittest.TestCase):
         filtered_df = self.filter.execute(df)
 
         # validate the filtered df
-        self.assertEqual(len(df), 4, 'Wrong number of rows after the execution of the filter.')
+        self.assertEqual(len(filtered_df), 4, 'Wrong number of rows after the execution of the filter.')
         num_of_correct_lang_ids = (filtered_df[self.INPUT_COLUMN] == self.CORRECT_LANG_ID).sum()
         self.assertEqual(num_of_correct_lang_ids, 4, 'Data frame still contains wrong language ids.')
 
