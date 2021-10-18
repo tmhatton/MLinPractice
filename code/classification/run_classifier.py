@@ -14,6 +14,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
+from sklearn.svm import SVC
+
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Classifier")
@@ -27,6 +29,7 @@ parser.add_argument("-at", "--always_true", action="store_true", help="Always 'T
 parser.add_argument("--knn", type = int, help = "k-nearest neighbor classifier with the specified value of k", default = None)
 parser.add_argument("-lf", "--label_frequency", action="store_true", help="Label Frequency classifier")
 parser.add_argument("-af", "--always_false", action="store_true", help="Always 'False' classifier")
+parser.add_argument("-svm", "--support_vector_machine", action="store_true", help="Support Vector Machines classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
 parser.add_argument("-p", "--precision", action="store_true", help="evaluate using precision")
 parser.add_argument("-r", "--recall", action="store_true", help="evaluate using recall")
@@ -73,6 +76,10 @@ else:  # manually set up a classifier
         standardizer = StandardScaler()
         knn_classifier = KNeighborsClassifier(args.knn)
         classifier = make_pipeline(standardizer, knn_classifier)
+        classifier.fit(data["features"], data["labels"].ravel())
+    elif args.support_vector_machine:
+        print("    Support Vector Machines classifier")
+        classifier = SVC()
         classifier.fit(data["features"], data["labels"].ravel())
 
 # now classify the given data
