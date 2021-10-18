@@ -140,7 +140,7 @@ By default, this data is used to train a classifier, which is specified by one o
 - `-lf` or `--label_frequency`: Label frequency classifier that predicts labels based on the training sets label distribution.
 - `-knn` + `value of k/ int`: K-Nearest Neighbor classifier that predicts labels based on the k-nearest neighbours in the feature space.
 - `-svm` or `--support_vector_machine`: Support Vector machine classifier that classifies a new instance based on a largest-margin hyperplane.
-- `-rf` or `--random_forest`: Makes a prediction by asking a randomly selected decision tree.
+- `-nb` or `--naive_bayes`: Makes a prediction by using conditional probabilities for computing the probability of a given data point belonging to a given class.
 
 The classifier is then evaluated, using the evaluation metrics as specified through the following optional arguments:
 - `-a`or `--accuracy`: Classification accurracy (i.e., percentage of correctly classified examples).
