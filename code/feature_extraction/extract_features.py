@@ -20,10 +20,11 @@ from code.feature_extraction.url_num import URLsNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
 from code.feature_extraction.photos_num import PhotosNum
+from code.feature_extraction.videos_num import VideosNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
 from code.feature_extraction.sentiment import Sentiment
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE, \
-    SUFFIX_TOKENIZED, COLUMN_STOPWORDS, COLUMN_PHOTOS
+    SUFFIX_TOKENIZED, COLUMN_STOPWORDS, COLUMN_PHOTOS, COLUMN_VIDEOS
 
 
 # setting up CLI
@@ -39,9 +40,11 @@ parser.add_argument("-m", "--mention_num", action="store_true", help="compute th
 parser.add_argument("-u", "--url_num", action="store_true", help="compute the number of URLs in the tweet")
 parser.add_argument("--cap_letter", action="store_true", help="compute the number of capital letters in the tweet")
 parser.add_argument("-p", "--punc_num", action="store_true", help="compute the number punctuation characters in the tweet")
-parser.add_argument("--photos_num", action="store_true", help="compute the number of photos in the tweet")
+parser.add_argument("--photos_num", action="store_true", help="compute the number of attached photos in the tweet")
+parser.add_argument("--videos_num", action="store_true", help="compute the number of attached videos in the tweet")
 parser.add_argument("-w", "--weekday", action="store_true", help="extract the one-hot encoded weekday of the tweet's date")
 parser.add_argument("-s", "--sentiment", action="store_true", help="compute the sentiment (i.e. polarity and subjectivity) of the tweet")
+
 args = parser.parse_args()
 
 # load data
@@ -81,6 +84,8 @@ else:  # need to create FeatureCollector manually
     if args.photos_num:
         features.append(PhotosNum(COLUMN_PHOTOS))
         # number of capital letters in original tweet (without any changes)
+    if args.videos_num:
+        features.append(VideosNum(COLUMN_VIDEOS))
     if args.weekday:
         # extract and one-hot-encode the weekday from the date of the tweet
         features.append(WeekdayExtractor(COLUMN_DATE))

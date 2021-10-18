@@ -17,6 +17,7 @@ COLUMN_MENTIONS = "mentions"
 COLUMN_URLS = "urls"
 COLUMN_PHOTOS = "photos"
 COLUMN_DATE = "date"
+COLUMN_VIDEOS = "video"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
@@ -32,6 +33,7 @@ SUFFIX_URL_NUM = "_url_num"
 SUFFIX_PUNC_NUM = "_punc_num"
 SUFFIX_CAP_LETTERS = "_cap_letters_num"
 SUFFIX_PHOTOS_NUM = "_photos_num"
+SUFFIX_VIDEOS_NUM = "_videos_num"
 
 # Weekday dictionary
 ISO_WEEKDAYS = {1: "Mon",
