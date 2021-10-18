@@ -15,6 +15,7 @@ COLUMN_RETWEETS = "retweets_count"
 COLUMN_HASHTAGS = "hashtags"
 COLUMN_MENTIONS = "mentions"
 COLUMN_URLS = "urls"
+COLUMN_PHOTOS = "photos"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
@@ -28,3 +29,4 @@ SUFFIX_MENTION_NUM = "_mention_num"
 SUFFIX_URL_NUM = "_url_num"
 SUFFIX_PUNC_NUM = "_punc_num"
 SUFFIX_CAP_LETTERS = "_cap_letters_num"
+SUFFIX_PHOTOS_NUM = "_photos_num"
