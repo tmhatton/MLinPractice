@@ -23,8 +23,9 @@ from code.feature_extraction.photos_num import PhotosNum
 from code.feature_extraction.videos_num import VideosNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
 from code.feature_extraction.sentiment import Sentiment
+from code.feature_extraction.times_of_day import TimesOfDayExtractor
 from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE, \
-    SUFFIX_TOKENIZED, COLUMN_STOPWORDS, COLUMN_PHOTOS, COLUMN_VIDEOS
+    SUFFIX_TOKENIZED, COLUMN_STOPWORDS, COLUMN_PHOTOS, COLUMN_VIDEOS, COLUMN_TIME
 
 
 # setting up CLI
@@ -44,6 +45,7 @@ parser.add_argument("--photos_num", action="store_true", help="compute the numbe
 parser.add_argument("--videos_num", action="store_true", help="compute the number of attached videos in the tweet")
 parser.add_argument("-w", "--weekday", action="store_true", help="extract the one-hot encoded weekday of the tweet's date")
 parser.add_argument("-s", "--sentiment", action="store_true", help="compute the sentiment (i.e. polarity and subjectivity) of the tweet")
+parser.add_argument("-tod", "--times_of_day", action="store_true", help="extracts the one-hot encoded time of day from the tweet's time")
 
 args = parser.parse_args()
 
@@ -79,19 +81,23 @@ else:  # need to create FeatureCollector manually
         # number of punctuation characters in original tweet (without any changes)
         features.append(PunctuationNum(COLUMN_TWEET))
     if args.cap_letter:
+        # number of capital letters in original tweet (without any changes)
         features.append(CapLettersNum(COLUMN_TWEET))
-        # number of capital letters in original tweet (without any changes)
     if args.photos_num:
+        # number of photos in the tweet
         features.append(PhotosNum(COLUMN_PHOTOS))
-        # number of capital letters in original tweet (without any changes)
     if args.videos_num:
+        # number of videos in the tweet
         features.append(VideosNum(COLUMN_VIDEOS))
     if args.weekday:
         # extract and one-hot-encode the weekday from the date of the tweet
         features.append(WeekdayExtractor(COLUMN_DATE))
     if args.sentiment:
-        # extract and one-hot-encode the weekday from the date of the tweet
+        # calculates the sentiment of the tweets
         features.append(Sentiment(COLUMN_TWEET))
+    if args.times_of_day:
+        # extract and one-hot-encode the times of day from the time of the tweet
+        features.append(TimesOfDayExtractor(COLUMN_TIME))
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)

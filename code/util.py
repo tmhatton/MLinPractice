@@ -19,6 +19,7 @@ COLUMN_PHOTOS = "photos"
 COLUMN_DATE = "date"
 COLUMN_VIDEOS = "video"
 COLUMN_LANGUAGE = "language"
+COLUMN_TIME = "time"
 
 # column names of novel columns for preprocessing
 COLUMN_LABEL = "label"
@@ -56,5 +57,6 @@ def flatten(t):
             flat_list.append(sublist)
     return flat_list
 
-FEATURE_SENTIMENT = "sentiment"
 
+FEATURE_SENTIMENT = "sentiment"
+FEATURE_TIMES_OF_DAY = "times_of_day"
