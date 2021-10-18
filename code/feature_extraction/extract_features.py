@@ -81,21 +81,22 @@ else:  # need to create FeatureCollector manually
         # number of punctuation characters in original tweet (without any changes)
         features.append(PunctuationNum(COLUMN_TWEET))
     if args.cap_letter:
+        # number of capital letters in original tweet (without any changes)
         features.append(CapLettersNum(COLUMN_TWEET))
-        # number of capital letters in original tweet (without any changes)
     if args.photos_num:
+        # number of photos in the tweet
         features.append(PhotosNum(COLUMN_PHOTOS))
-        # number of capital letters in original tweet (without any changes)
     if args.videos_num:
+        # number of videos in the tweet
         features.append(VideosNum(COLUMN_VIDEOS))
     if args.weekday:
         # extract and one-hot-encode the weekday from the date of the tweet
         features.append(WeekdayExtractor(COLUMN_DATE))
     if args.sentiment:
-        # extract and one-hot-encode the weekday from the date of the tweet
+        # calculates the sentiment of the tweets
         features.append(Sentiment(COLUMN_TWEET))
     if args.times_of_day:
-        # extract and one-hot-encode the weekday from the date of the tweet
+        # extract and one-hot-encode the times of day from the time of the tweet
         features.append(TimesOfDayExtractor(COLUMN_TIME))
 
     # create overall FeatureCollector
