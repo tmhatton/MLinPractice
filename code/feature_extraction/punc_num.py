@@ -22,12 +22,13 @@ class PunctuationNum(FeatureExtractor):
     # compute the number of punctuation characters in input
     def _get_values(self, inputs):
         punc_num = []
-        number = 0
+
         for tweet in inputs[0]:
+            number = 0
             for character in tweet:
                 if character in punctuation:
                     number = number + 1
-        punc_num.append(number)
+            punc_num.append(number)
 
         punc_num = np.array(punc_num).reshape(-1, 1)
         return punc_num
