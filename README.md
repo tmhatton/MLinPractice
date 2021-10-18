@@ -60,6 +60,9 @@ The preprocessing steps to take can be configured with the following flags:
 - `-t` or `--tokenize`: Tokenize a given column (can be specified by `--tokenize_input`, default = "tweet"), and create new column with suffix "_tokenized" containing tokenized tweet. 
 - `-sw` or `--stopwords`: Remove stopwords from either the tweet or tweet_tokenized column (only if `--tokenize` is also used in the pipeline), and create new column "tweet_no_stopwords" containing the list of remaining words / tokens of the tweet.
 
+Also, it is possible to remove unwanted rows from the data set with the following flags:
+- `-l` or `--language`: Remove all rows that have not the language identifer specified by `--language_input` from the data frame.
+
 Moreover, the script accepts the following optional parameters:
 - `-e` or `--export` gives the path to a pickle file where an sklearn pipeline of the different preprocessing steps will be stored for later usage.
 
@@ -150,6 +153,7 @@ The classifier is then evaluated, using the evaluation metrics as specified thro
 - `-f1` or `--f1_score`: Classification F<sub>1</sub>-Score (i.e., the harmonic mean of precision and recall).
 - `-c` or `--cohen`: Classification Cohen's Kappa (i.e. the inter-annotator agreement).
 - `-l` or `--log_loss`: Classification log loss (a.k.a logistic loss or cross-entropy loss).
+- `-auc` or `--auc_roc`: Classification AUC-ROC (a.k.a Area Under the Curve (AUC); while the Curve represented by: Receiver Operating Characteristics (ROC))
 
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.

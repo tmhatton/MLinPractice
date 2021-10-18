@@ -10,7 +10,7 @@ Created on Wed Sep 29 14:23:48 2021
 
 import argparse, pickle
 from sklearn.dummy import DummyClassifier
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, cohen_kappa_score, log_loss
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, cohen_kappa_score, log_loss, roc_auc_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
@@ -40,6 +40,8 @@ parser.add_argument("-r", "--recall", action="store_true", help="evaluate using 
 parser.add_argument("-c", "--cohen", action="store_true", help="evaluate using cohen's kappa")
 parser.add_argument("-l", "--log_loss", action="store_true", help="evaluate using the log loss")
 parser.add_argument("-f1", "--f1_score", action="store_true", help="evaluate using f1")
+parser.add_argument("-auc", "--auc_roc", action="store_true", help="evaluate AUC-ROC score")
+
 args = parser.parse_args()
 
 # load data
@@ -113,7 +115,8 @@ if args.cohen:
     evaluation_metrics.append(("cohen_kappa_score", cohen_kappa_score))
 if args.log_loss:
     evaluation_metrics.append(("log_loss", log_loss))
-
+if args.auc_roc:
+    evaluation_metrics.append(("roc_auc", roc_auc_score))
 
 # compute and print them
 for metric_name, metric in evaluation_metrics:
