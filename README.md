@@ -149,6 +149,7 @@ The classifier is then evaluated, using the evaluation metrics as specified thro
 - `-f1` or `--f1_score`: Classification F<sub>1</sub>-Score (i.e., the harmonic mean of precision and recall).
 - `-c` or `--cohen`: Classification Cohen's Kappa (i.e. the inter-annotator agreement).
 - `-l` or `--log_loss`: Classification log loss (a.k.a logistic loss or cross-entropy loss).
+- `-auc` or `--auc_roc`: Classification AUC-ROC (a.k.a Area Under the Curve (AUC); while the Curve represented by: Receiver Operating Characteristics (ROC))
 
 Moreover, the script support importing and exporting trained classifiers with the following optional arguments:
 - `-i` or `--import_file`: Load a trained classifier from the given pickle file. Ignore all parameters that configure the classifier to use and don't retrain the classifier.
