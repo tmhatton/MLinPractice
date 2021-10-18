@@ -15,6 +15,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
 from sklearn.svm import SVC
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import GaussianNB
 
 
@@ -86,11 +87,16 @@ else:  # manually set up a classifier
         print("    Support Vector Machines classifier")
         classifier = SVC()
         classifier.fit(data["features"], data["labels"].ravel())
+    elif args.random_forest:
+        print("    Random Forest classifier")
+        standardizer = StandardScaler()
+        rf_classifier = RandomForestClassifier(n_estimators = 1000)
+        classifier = make_pipeline(standardizer, rf_classifier)
+        classifier.fit(data["features"], data["labels"].ravel())
     elif args.naive_bayes:
         print("    Naive Bayes classifier")
         classifier = GaussianNB()
         classifier.fit(data["features"], data["labels"].ravel())
-
 
 # now classify the given data
 prediction = classifier.predict(data["features"])
