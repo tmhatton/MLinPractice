@@ -1,5 +1,5 @@
 #!/bin/bash
-#$ -N knn
+#$ -N svm
 #$ -l mem=2G
 #$ -cwd
 #$ -pe default 2

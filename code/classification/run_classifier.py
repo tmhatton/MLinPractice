@@ -34,6 +34,8 @@ parser.add_argument("--knn", type=int, help="k-nearest neighbor classifier with 
 parser.add_argument("-lf", "--label_frequency", action="store_true", help="Label Frequency classifier")
 parser.add_argument("-af", "--always_false", action="store_true", help="Always 'False' classifier")
 parser.add_argument("-svm", "--support_vector_machine", action="store_true", help="Support Vector Machines classifier")
+parser.add_argument("--svm_kernel", help="SVM kernel", choices=["linear", "poly", "rbf", "sigmoid", "precomputed"], default='rbf')
+parser.add_argument("--svm_C", type=float, help="SVM regularization parameter. Must be strictly positive", default=1.0)
 parser.add_argument("-rf", "--random_forest", action="store_true", help="Random Forest classifier")
 parser.add_argument("-nb", "--naive_bayes", action="store_true", help="Naive Bayes classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
@@ -93,7 +95,11 @@ else:  # manually set up a classifier
         classifier = make_pipeline(standardizer, knn_classifier)
     elif args.support_vector_machine:
         print("    Support Vector Machines classifier")
-        classifier = SVC()
+        log_param("classifier", "svm")
+        log_param("kernel", args.svm_kernel)
+        log_param("C", args.svm_C)
+        params = {"classifier": "svm", "kernel": args.svm_kernel, "C": args.svm_C}
+        classifier = SVC(kernel=args.svm_kernel, C=args.svm_C)
     elif args.random_forest:
         print("    Random Forest classifier")
         standardizer = StandardScaler()
