@@ -131,8 +131,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# exclude /data directory entirely
-/data/
+# exclude /data directories
+/data/raw/
+/data/preprocessing/
 
 # exclude .idea directory
 /.idea/
