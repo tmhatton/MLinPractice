@@ -98,6 +98,7 @@ else:  # manually set up a classifier
         log_param("classifier", "svm")
         log_param("kernel", args.svm_kernel)
         log_param("C", args.svm_C)
+        params = {"classifier": "svm", "kernel": args.svm_kernel, "C", args.svm_C}
         classifier = SVC(kernel=args.svm_kernel, C=args.svm_C)
     elif args.random_forest:
         print("    Random Forest classifier")
