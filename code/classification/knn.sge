@@ -1,5 +1,5 @@
 #!/bin/bash
-#$ -N classifier
+#$ -N knn
 #$ -l mem=2G
 #$ -cwd
 #$ -pe default 2
