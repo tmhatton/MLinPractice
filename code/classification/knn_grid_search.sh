@@ -14,7 +14,7 @@ then
 elif [ "$1" = grid ]
 then
     echo "[grid execution"
-    cmd="qsub code/classification/classifier.sge"
+    cmd="qsub code/classification/knn.sge"
 else
     echo "[ERROR! Argument not supported!]"
     exit 1
