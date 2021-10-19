@@ -1,0 +1,15 @@
+artifact_uri: data/classification/mlflow/0/172b8b1da0134bffa185ddd56b880124/artifacts
+end_time: 1634573615041
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: deleted
+name: ''
+run_id: 172b8b1da0134bffa185ddd56b880124
+run_uuid: 172b8b1da0134bffa185ddd56b880124
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1634573611878
+status: 3
+tags: []
+user_id: Tom
