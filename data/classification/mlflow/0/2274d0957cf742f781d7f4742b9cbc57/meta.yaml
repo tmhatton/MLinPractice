@@ -1,0 +1,15 @@
+artifact_uri: data/classification/mlflow/0/2274d0957cf742f781d7f4742b9cbc57/artifacts
+end_time: 1635238431651
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+name: ''
+run_id: 2274d0957cf742f781d7f4742b9cbc57
+run_uuid: 2274d0957cf742f781d7f4742b9cbc57
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1635238414818
+status: 3
+tags: []
+user_id: thatton
