@@ -34,7 +34,7 @@ echo "$criterion"
 for n in $values_of_N
 do
     echo "$n estimators"
-    $cmd 'data/classification/rf_'"$weights"'_'"$criterion"'_'"$n"'.pickle' -rf --rf_weights "$weights" --rf_criterion "$criterion" --rf_n $n -s 7 --f1 --cohen --auc_roc
+    $cmd 'data/classification/rf_'"$weights"'_'"$criterion"'_'"$n"'.pickle' -rf --rf_weights $weights --rf_criterion "$criterion" --rf_n $n -s 7 --f1 --cohen --auc_roc
 done
 done
 done
