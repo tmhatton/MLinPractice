@@ -118,6 +118,8 @@ else:  # manually set up a classifier
         log_param("criterion", args.rf_criterion)
         rf_weights = 'balanced' if args.rf_weights == 1 else None
         log_param("class_weights", rf_weights)
+        params = {"classifier": "random_forest", "n_estimators": args.rf_n, "criterion": args.rf_criterion,
+                  "class_weights": rf_weights}
         standardizer = StandardScaler()
         rf_classifier = RandomForestClassifier(n_estimators=args.rf_n, criterion=args.rf_criterion,
                                                class_weight=rf_weights, n_jobs=-1)
