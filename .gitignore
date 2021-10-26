@@ -134,6 +134,9 @@ dmypy.json
 # exclude /data directories
 /data/raw/
 /data/preprocessing/
-
+/data/classification/*.pickle
 # exclude .idea directory
 /.idea/
+
+# model pickle files
+*.pickle
