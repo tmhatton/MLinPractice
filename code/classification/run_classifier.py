@@ -8,17 +8,20 @@ Created on Wed Sep 29 14:23:48 2021
 @author: lbechberger
 """
 
-import argparse, pickle
+import argparse
+import pickle
+
+from mlflow import log_metric, log_param, set_tracking_uri
 from sklearn.dummy import DummyClassifier
+from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, cohen_kappa_score, log_loss, \
     roc_auc_score
-from sklearn.preprocessing import StandardScaler
+from sklearn.naive_bayes import GaussianNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import make_pipeline
-from sklearn.svm import SVC
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.naive_bayes import GaussianNB
-from mlflow import log_metric, log_param, set_tracking_uri
+from sklearn.preprocessing import StandardScaler
+from sklearn.svm import SVC, LinearSVC
+from sklearn.tree import DecisionTreeClassifier
 
 # setting up CLI
 parser = argparse.ArgumentParser(description="Classifier")
@@ -37,6 +40,11 @@ parser.add_argument("-svm", "--support_vector_machine", action="store_true", hel
 parser.add_argument("--svm_kernel", help="SVM kernel", choices=["linear", "poly", "rbf", "sigmoid", "precomputed"], default='rbf')
 parser.add_argument("--svm_C", type=float, help="SVM regularization parameter. Must be strictly positive", default=1.0)
 parser.add_argument("-rf", "--random_forest", action="store_true", help="Random Forest classifier")
+parser.add_argument("--rf_n", type=int, help="Random Forest Number of Estimators", default=100)
+parser.add_argument("--rf_criterion", type=str, help="Random Forest split criterion", choices=['gini', 'entropy'], default='gini')
+parser.add_argument("--rf_weights", type=int, help="Random Forest class weights. 1 = balanced, 0 = not_balanced", default=0)
+parser.add_argument("-lsvc", "--linear_svc", action="store_true")
+parser.add_argument("-dt", "--decision_tree", action="store_true")
 parser.add_argument("-nb", "--naive_bayes", action="store_true", help="Naive Bayes classifier")
 parser.add_argument("-a", "--accuracy", action="store_true", help="evaluate using accuracy")
 parser.add_argument("-p", "--precision", action="store_true", help="evaluate using precision")
@@ -100,11 +108,23 @@ else:  # manually set up a classifier
         log_param("C", args.svm_C)
         params = {"classifier": "svm", "kernel": args.svm_kernel, "C": args.svm_C}
         classifier = SVC(kernel=args.svm_kernel, C=args.svm_C)
+    elif args.linear_svc:
+        print("    Linear Support Vector Machine classifier")
+        classifier = LinearSVC(class_weight='balanced', max_iter=100_000)
     elif args.random_forest:
         print("    Random Forest classifier")
+        log_param("classifier", "random_forest")
+        log_param("n_estimators", args.rf_n)
+        log_param("criterion", args.rf_criterion)
+        rf_weights = 'balanced' if args.rf_weights == 1 else None
+        log_param("class_weights", rf_weights)
         standardizer = StandardScaler()
-        rf_classifier = RandomForestClassifier(n_estimators=1000)
+        rf_classifier = RandomForestClassifier(n_estimators=args.rf_n, criterion=args.rf_criterion,
+                                               class_weight=rf_weights, n_jobs=-1)
         classifier = make_pipeline(standardizer, rf_classifier)
+    elif args.decision_tree:
+        print("    Decision Tree classifier")
+        classifier = DecisionTreeClassifier(class_weight='balanced')
     elif args.naive_bayes:
         print("    Naive Bayes classifier")
         classifier = GaussianNB()
