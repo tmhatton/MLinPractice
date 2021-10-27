@@ -31,4 +31,5 @@ class PunctuationNum(FeatureExtractor):
             punc_num.append(number)
 
         punc_num = np.array(punc_num).reshape(-1, 1)
+
         return punc_num

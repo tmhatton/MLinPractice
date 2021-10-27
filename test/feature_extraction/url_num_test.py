@@ -5,13 +5,13 @@ from code.feature_extraction.url_num import URLsNum
 from code.util import COLUMN_URLS
 
 
-class MentionNumTest(unittest.TestCase):
+class URLsNumTest(unittest.TestCase):
 
     def setUp(self) -> None:
         self.INPUT_COLUMN = COLUMN_URLS
         self.extractor = URLsNum(self.INPUT_COLUMN)
 
-    def test_hashtag_num(self):
+    def test_url_num(self):
         input = '''['www.google.com', 'www.apple.com', 'www.uos.de', 'www.example.com']'''
         input_df = pd.DataFrame([COLUMN_URLS])
         input_df[COLUMN_URLS] = [input]
