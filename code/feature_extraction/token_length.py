@@ -29,11 +29,3 @@ class TokenLength(FeatureExtractor):
         nums_of_tokens = np.array(nums_of_tokens).reshape(-1, 1)
 
         return nums_of_tokens
-        # token_lengths = []
-        #
-        # for tweet in inputs[0]:
-        #     token_lengths.append(len(tweet.split()))
-        #
-        # token_lengths = np.array(token_lengths).reshape(-1, 1)
-        #
-        # return token_lengths

@@ -11,7 +11,7 @@ class PhotosNumTest(unittest.TestCase):
         self.extractor = PhotosNum(self.INPUT_COLUMN)
 
     def test_photos_num(self):
-        input = '''['hashtag', 'yolo', 'data']'''
+        input = '''['www.hashtag.de/234234.jpg', 'www.yolo.us/g5h23g45f.png', 'www.data.it/246gkjnbvh2.jpg']'''
         input_df = pd.DataFrame([COLUMN_PHOTOS])
         input_df[COLUMN_PHOTOS] = [input]
 

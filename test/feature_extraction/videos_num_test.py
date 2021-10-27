@@ -4,14 +4,14 @@ from code.feature_extraction.videos_num import VideosNum
 from code.util import COLUMN_VIDEOS
 
 
-class PhotosNumTest(unittest.TestCase):
+class VideosNumTest(unittest.TestCase):
 
     def setUp(self) -> None:
         self.INPUT_COLUMN = COLUMN_VIDEOS
         self.extractor = VideosNum(self.INPUT_COLUMN)
 
-    def test_photos_num(self):
-        input = '''[0]'''
+    def test_videos_num(self):
+        input = 0
         input_df = pd.DataFrame([COLUMN_VIDEOS])
         input_df[COLUMN_VIDEOS] = [input]
 
