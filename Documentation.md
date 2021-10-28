@@ -26,6 +26,8 @@ Is there anything we can learn from these results?
 
 ## Preprocessing
 
+In the following we describe all preprocessing steps that we have implemented. 
+
 ### Language filter
 
 The language filter can be used to remove tweets from the data set that are in a different language than the target language.
@@ -70,11 +72,35 @@ So it kept ~96 percent of the data or to be specific 283.240 data samples which 
 The removal of non-english tweets is a crucial point. 
 If you want to use not only metadata of the tweet to predict its virality, having a single language in your data set reduces the complexity of all further steps in the pipeline, e.g. sentiment analysis.
 
-### Punctuation remover
+### Removing punctuation
 
-### Stop word remover
+The punctuation remover removes all the punctuation from a tweet. 
+It was implemented during the online lectures.
 
-### Tokenizer
+Sometimes the punctuation of a text does not contain much information. 
+But since we want to use the punctuation of a tweet as a feature we did not use this preprocessing step.
+
+### Removing stop words
+
+The stop word remover removes all english stopwords from either the raw tweet or the tokenized tweet.
+
+#### Design Decisions
+
+#### Implementation Details
+
+#### Results
+
+#### Interpretation
+
+### Tokenize the tweet
+
+#### Design Decisions
+
+#### Implementation Details
+
+#### Results
+
+#### Interpretation
 
 I'm following the "Design Decisions - Results - Interpretation" structure here,
 but you can also just use one subheading per preprocessing step to organize
@@ -92,6 +118,8 @@ Maybe show a short example what your preprocessing does.
 ### Interpretation
 
 Probably, no real interpretation possible, so feel free to leave this section out.
+
+---
 
 ## Feature Extraction
 
