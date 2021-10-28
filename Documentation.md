@@ -1,4 +1,4 @@
-# Documentation Example
+# Documentation
 
 Some introductory sentence(s). Data set and task are relatively fixed, so 
 probably you don't have much to say about them (unless you modifed them).
@@ -22,7 +22,59 @@ How do the baselines perform with respect to the evaluation metrics?
 
 Is there anything we can learn from these results?
 
+---
+
 ## Preprocessing
+
+### Language filter
+
+The language filter can be used to remove tweets from the data set that are in a different language than the target language.
+
+####  Design Decisions
+
+Since not all tweets in the dataset are written in English we had to decide whether we remove or translate them.
+To decide which option to choose, we took a look at the language distribution of the tweets.
+
+| Place | Language id | Number of tweets |
+| ----: | ----------- | ---------------: |
+| 1.    | EN          | 283.240           |
+| 2.    | ES          | 3.492             |
+| 3.    | FR          | 3.287             |
+| 4.    | DE          | 811              |
+| 5.    | IT          | 748              |
+| 6.    | IN          | 631              |
+| 7.    | UND         | 546              |
+| 8.    | NL          | 396              |
+| 9.    | PT          | 389              |
+| 10.   | TL          | 362              |
+
+As the majority of our tweets are english tweets, we decided to remove the non-english tweets.
+We had two possibilities to do so. 
+First, we could use the column `language` from the dataset. 
+Second, we could use some external service or class to determine the language from the `tweet` column.
+Although we have found that the language in the `language` column is not always correct, we have used it because the algorithms that determine the language of a text do not always provide the correct language either.
+
+#### Implementation Details
+
+The `LanguageFilter` class does not create a new column like the other preprocessing steps but removes some rows from the data set.
+Therefore, we could not use the `Preprocessor` class.
+Instead, we implemented a base class for filtering, i.e. the `Filter` class, that removes certain indices from a data frame.
+
+#### Results
+
+With our data the `LanguageFilter` was able to remove 12.571 samples from the 295.811 samples in our data set. 
+So it kept ~96 percent of the data or to be specific 283.240 data samples which is more than enough to train a classifier.
+
+#### Interpretation
+
+The removal of non-english tweets is a crucial point. 
+If you want to use not only metadata of the tweet to predict its virality, having a single language in your data set reduces the complexity of all further steps in the pipeline, e.g. sentiment analysis.
+
+### Punctuation remover
+
+### Stop word remover
+
+### Tokenizer
 
 I'm following the "Design Decisions - Results - Interpretation" structure here,
 but you can also just use one subheading per preprocessing step to organize
