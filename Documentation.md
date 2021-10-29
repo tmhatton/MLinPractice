@@ -126,9 +126,47 @@ The sentence `"This is an example sentence"` is split by the tokenizer in the fo
 
 ### Media
 
-- number of photos
-- number of videos
-- number of urls
+#### Design Decisions
+
+The first kind of features are related to media.
+Media can be either an internal media type like videos or pictures or an external media type like links to external websites.
+All media types can provide an additional source of information besides the relatively short tweets.
+Therefore, they could also influence the vitality of a tweet.
+
+Thus, we extracted three media-related features from our data.
+We counted the number of photos that are posted with a tweet and the number of links that are contained in the tweet.
+As both information are stored in a list in a separate data cell (i.e. `urls` and `photos`) we just had to count the elements in these list.
+Therefore, we used a base class that counts the elements in a list and two derived classes for each feature that defines the name of the input and output columns. 
+The third feature is extracted from the `video` column.
+Because the values of the column are either 0 or 1 we can use the values directly.
+
+#### Results
+
+The following figure shows the relative frequencies of how many images are posted with a tweet.
+About 59% of tweets do not contain a photo.
+Of the remaining 41 % tweets, mostly only one photo is posted. 
+The maximum number of photos is four which is also the maximum of allowed photos per tweet ([Source: Twitter - Upload media](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/uploading-media/media-best-practices)).
+
+![Shows the relative frequencies of photos posted with a tweet.](figures/photos.png "Relative frequencies of photos")
+
+In contrast to the number of photos posted with a tweet the most tweets (~81 %) contain at least one URL where one URL is also the most common one with ~75 %.
+Around 4 % of the tweets contain two urls and the remaining 2 % of the tweets contain three to eight URLs.
+
+![Shows the relative frequencies of URLs contained in the tweets.](figures/urls.png "Relative frequencies of URLs")
+
+Most tweets (~58 %) do not contain a video as the following figure shows. 
+The other ~42 % contain one video which is also the maximum of allowed videos ([Source: Twitter - Upload media](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/uploading-media/media-best-practices)).
+
+![Shows the relative frequencies of videos posted with a tweet.](figures/video.png "Relative frequencies of videos")
+
+#### Interpretation
+
+Since the length of a tweet is limited to 280 characters and in the past even to only 140 characters ([Source: Twitter - Counting characters](https://developer.twitter.com/en/docs/counting-characters)), it is important to use this limited length as well as possible.
+So, the virality of a tweet will probably not benefit from a high number of URLs.
+However, providing one URL could be beneficial as it can lead the user to further information about the content of the tweet.
+Also, it might be important to let the tweet take up as much space as possible in the feed, as it is more visible that way.
+This can be achieved by adding a video or photos. 
+But since you can either add a video or photos ([Source: Twitter - Upload media](https://developer.twitter.com/en/docs/twitter-api/v1/media/upload-media/uploading-media/media-best-practices)) and the majority of the tweets (~83 %) have added a video or photos this features may carry not too much information about the tweet's virality.
 
 ### Tweet length
 
