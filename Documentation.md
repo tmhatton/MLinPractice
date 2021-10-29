@@ -173,7 +173,7 @@ But since you can either add a video or photos ([Source: Twitter - Upload media]
 #### Design Decisions
 
 The second kind of features are related to the tweet's length. 
-As already mentioned before the length of a tweet is limited to 280 characters ([Source: Twitter - Counting characters](https://developer.twitter.com/en/docs/counting-characters)). 
+As already mentioned before, the length of a tweet is limited to 280 characters ([Source: Twitter - Counting characters](https://developer.twitter.com/en/docs/counting-characters)). 
 So, the number of characters used in a tweet can maybe beneficial to predict its virality. 
 To extract the character length of a tweet we just had to count the number of characters.
 Furthermore, we also wanted to include the number of words as a feature.
@@ -217,8 +217,36 @@ In this case, the classifier would not have to learn the dependency first.
 
 ### Time
 
-- weekday
-- times of day
+#### Design Decisions
+
+Another useful feature type could be time-related features. 
+Because there are time slots where more users are online and probably the interaction rate with a newly posted tweet influences also if the tweet is shown to other users, the posting time is important for the tweet's virality.
+Therefore, we decided to implement two time-related features. 
+The first looks at the time, categorize the posting time in one of four categories, and returns the one-hot encoded category as feature, where the four categories are night (00:00-5:59), morning (06:00-11:59), afternoon (12:00-17:59), and evening (18:00-23:59).
+The second takes the date, looks the weekday up, and returns the one-hot encoded weekday as feature.
+
+#### Results
+
+The following figure shows the relative frequencies of the time categories. 
+The most tweets are posted in the evening (~38.5%), followed by tweets that are posted in the night (~31.5 %), in the morning (~16.5 %), and in the afternoon (~13.5 %).
+
+![Shows the relative frequencies of the time categories.](figures/time.png "Relative frequencies of the time categories")
+
+The relative frequencies of the weekdays are shown in the next figure. 
+Most tweets are posted on the days from Friday to Monday.
+After Monday the posting rate drops until it reaches it low at Thursday, where the posting rate on Thursday is about half the posting rate from Friday to Monday.
+
+![Shows the relative frequencies of the weekdays.](figures/weekday.png "Relative frequencies of the weekdays")
+
+#### Interpretation
+
+Time-related features are probably very important for the virality prediction.
+If more users are active at the posting time it could be more likely that a tweet goes viral. 
+However, the times included in the data will probably not bring the hoped-for success.
+Although, the times are all in the same time zone, this does not mean that the most followers of this tweeter are also in the same time zone and thus online.
+Because of that the times of day feature is probably noisy.
+If we had the time in the tweeter's time zone, the feature would be more valuable, since most of the Twitter user's followers probably live in the same time zone.
+However, the day of the week feature could be less noisy and therefore improve the prediction quality.
 
 ### Sentiment
 
@@ -235,15 +263,15 @@ In this case, the classifier would not have to learn the dependency first.
 - number of capital letters
 - number of punctuation
 
-### Design Decisions
+#### Design Decisions
 
 Which features did you implement? What's their motivation and how are they computed?
 
-### Results
+#### Results
 
 Can you say something about how the feature values are distributed? Maybe show some plots?
 
-### Interpretation
+#### Interpretation
 
 Can we already guess which features may be more useful than others?
 
