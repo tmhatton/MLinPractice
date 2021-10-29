@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 
-from code.feature_extraction.list_counter import PhotosNum, URLsNum, HashtagNum, MentionNum
+from code.feature_extraction.list_counter import PhotosNum, URLsNum, HashtagNum, MentionNum, TokenNum
 from code.util import COLUMN_PHOTOS, COLUMN_URLS, COLUMN_HASHTAGS, COLUMN_MENTIONS
 
 
@@ -71,6 +71,23 @@ class MentionNumTest(unittest.TestCase):
         output = self.extractor.fit_transform(input_df)
 
         self.assertEqual(expected_output, output)
+
+
+class TokenNumTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.INPUT_COLUMN = "input"
+        self.extractor = TokenNum(self.INPUT_COLUMN)
+
+    def test_token_length(self):
+        input_text = "['This', 'is', 'an', 'example', 'sentence']"
+        output = [5]
+
+        input_df = pd.DataFrame()
+        input_df[self.INPUT_COLUMN] = [input_text]
+        token_length = self.extractor.fit_transform(input_df)
+
+        self.assertEqual(output, token_length)
 
 
 if __name__ == '__main__':

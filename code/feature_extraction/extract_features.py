@@ -13,16 +13,14 @@ import pandas as pd
 import numpy as np
 from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
-from code.feature_extraction.token_length import TokenLength
-from code.feature_extraction.list_counter import URLsNum, PhotosNum, HashtagNum, MentionNum
+from code.feature_extraction.list_counter import URLsNum, PhotosNum, HashtagNum, MentionNum, TokenNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
 from code.feature_extraction.videos_num import VideosNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
 from code.feature_extraction.sentiment import Sentiment
 from code.feature_extraction.times_of_day import TimesOfDayExtractor
-from code.util import COLUMN_TWEET, COLUMN_LABEL, COLUMN_HASHTAGS, COLUMN_MENTIONS, COLUMN_URLS, COLUMN_DATE, \
-    SUFFIX_TOKENIZED, COLUMN_STOPWORDS, COLUMN_PHOTOS, COLUMN_VIDEOS, COLUMN_TIME
+from code.util import COLUMN_TWEET, COLUMN_LABEL, SUFFIX_TOKENIZED, COLUMN_STOPWORDS
 
 
 # setting up CLI
@@ -62,9 +60,10 @@ else:  # need to create FeatureCollector manually
         # character length of original tweet (without any changes)
         features.append(CharacterLength(COLUMN_TWEET))
     if args.token_length:
-        # token length of tokenized tweet
-        features.append(TokenLength(COLUMN_TWEET + SUFFIX_TOKENIZED))
-        features.append(TokenLength(COLUMN_STOPWORDS))
+        # number of tokens of tokenized tweet
+        features.append(TokenNum(COLUMN_TWEET + SUFFIX_TOKENIZED))
+        # number of tokens of tokenized tweet without stop words
+        features.append(TokenNum(COLUMN_STOPWORDS))
     if args.hashtag_num:
         # number of hashtags of original tweet data from hashtags column
         features.append(HashtagNum())
@@ -85,16 +84,16 @@ else:  # need to create FeatureCollector manually
         features.append(PhotosNum())
     if args.videos_num:
         # number of videos in the tweet
-        features.append(VideosNum(COLUMN_VIDEOS))
+        features.append(VideosNum())
     if args.weekday:
         # extract and one-hot-encode the weekday from the date of the tweet
-        features.append(WeekdayExtractor(COLUMN_DATE))
+        features.append(WeekdayExtractor())
     if args.sentiment:
         # calculates the sentiment of the tweets
-        features.append(Sentiment(COLUMN_TWEET))
+        features.append(Sentiment())
     if args.times_of_day:
         # extract and one-hot-encode the times of day from the time of the tweet
-        features.append(TimesOfDayExtractor(COLUMN_TIME))
+        features.append(TimesOfDayExtractor())
 
     # create overall FeatureCollector
     feature_collector = FeatureCollector(features)
