@@ -13,9 +13,8 @@ import pandas as pd
 import numpy as np
 from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
-from code.feature_extraction.mention_num import MentionNum
 from code.feature_extraction.token_length import TokenLength
-from code.feature_extraction.list_counter import URLsNum, PhotosNum, HashtagNum
+from code.feature_extraction.list_counter import URLsNum, PhotosNum, HashtagNum, MentionNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
 from code.feature_extraction.videos_num import VideosNum
@@ -68,13 +67,13 @@ else:  # need to create FeatureCollector manually
         features.append(TokenLength(COLUMN_STOPWORDS))
     if args.hashtag_num:
         # number of hashtags of original tweet data from hashtags column
-        features.append(HashtagNum(COLUMN_HASHTAGS))
+        features.append(HashtagNum())
     if args.mention_num:
         # number of mentions of original tweet data from mentions column
-        features.append(MentionNum(COLUMN_MENTIONS))
+        features.append(MentionNum())
     if args.url_num:
         # number of URLs of original tweet data from urls column
-        features.append(URLsNum(COLUMN_URLS))
+        features.append(URLsNum())
     if args.punc_num:
         # number of punctuation characters in original tweet (without any changes)
         features.append(PunctuationNum(COLUMN_TWEET))
@@ -83,7 +82,7 @@ else:  # need to create FeatureCollector manually
         features.append(CapLettersNum(COLUMN_TWEET))
     if args.photos_num:
         # number of photos in the tweet
-        features.append(PhotosNum(COLUMN_PHOTOS))
+        features.append(PhotosNum())
     if args.videos_num:
         # number of videos in the tweet
         features.append(VideosNum(COLUMN_VIDEOS))

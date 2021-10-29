@@ -5,7 +5,8 @@ import ast
 import numpy as np
 
 from code.feature_extraction.feature_extractor import FeatureExtractor
-from code.util import COLUMN_TWEET, COLUMN_URLS, SUFFIX_URL_NUM, COLUMN_PHOTOS, SUFFIX_PHOTOS_NUM, COLUMN_HASHTAGS, SUFFIX_HASHTAG_NUM
+from code.util import COLUMN_TWEET, COLUMN_URLS, SUFFIX_URL_NUM, COLUMN_PHOTOS, SUFFIX_PHOTOS_NUM, COLUMN_HASHTAGS, \
+    SUFFIX_HASHTAG_NUM, COLUMN_MENTIONS, SUFFIX_MENTION_NUM
 
 
 class ListCounter(FeatureExtractor):
@@ -54,3 +55,12 @@ class HashtagNum(ListCounter):
 
     def __init__(self, input_column=COLUMN_HASHTAGS):
         super().__init__(input_column, COLUMN_TWEET + SUFFIX_HASHTAG_NUM)
+
+
+class MentionNum(ListCounter):
+    """
+    Class to extract the number of mentions from a tweet
+    """
+
+    def __init__(self, input_column=COLUMN_MENTIONS):
+        super().__init__(input_column, COLUMN_TWEET + SUFFIX_MENTION_NUM)
