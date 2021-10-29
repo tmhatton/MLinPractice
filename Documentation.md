@@ -170,8 +170,50 @@ But since you can either add a video or photos ([Source: Twitter - Upload media]
 
 ### Tweet length
 
-- character length
-- token length (with and without stop words)
+#### Design Decisions
+
+The second kind of features are related to the tweet's length. 
+As already mentioned before the length of a tweet is limited to 280 characters ([Source: Twitter - Counting characters](https://developer.twitter.com/en/docs/counting-characters)). 
+So, the number of characters used in a tweet can maybe beneficial to predict its virality. 
+To extract the character length of a tweet we just had to count the number of characters.
+Furthermore, we also wanted to include the number of words as a feature.
+We counted all word tokens as well as all word tokens without stop words using the previous implemented `ListCounter` class.
+By including both values as features we hoped that the classifier could learn something about how meaningful a tweet is which hopefully improves the virality prediction.
+
+#### Results
+
+In the following figure, only tweets with less than 341 characters are considered.
+So, a total of 390 tweets were excluded.
+Considering that a tweet can only be 280 characters long, it is still strange why some tweets have more characters.
+A reason for this could be that some entity objects impact the length of a tweet ([Source: Twitter - Counting characters](https://developer.twitter.com/en/docs/counting-characters)).
+
+The histogram shows clearly that in the past the maximal number of characters was limited to 140 characters. 
+The number of tweets that contain a certain number of characters increases until the maximum of ~38.000 tweets is reached for tweets that are around 140 characters long. 
+Afterwards the number of tweets drops and is relatively uniform distributed around 6.000 tweets with small peaks at 160, 280, and 310 characters.
+
+![Shows the histogram of the character length of a tweet.](figures/char.png "Histogram of character length")
+
+For the next figure, only tweets with less than 71 tokens are considered.
+So, 337 tweets are not included.
+
+The figure shows two histograms one for the number of all word tokens in the tweet and the other for the number of word tokens exclusive stop words. 
+Again one can see that the character limit was increased over time.
+
+![Shows the histogram of the number of tokens in a tweet.](figures/tokens.png "Histogram of number of tokens")
+
+The last figure shows the difference between the number of tokens with and without stop words. 
+The size of each point in the scatter plot shows how many of the tweets have a certain difference relative to the number of tokens with stop words.
+With increasing number of tokens also the difference range increases. 
+
+![Shows a scatterplot of the number of tokens in a tweet in relation to the difference to the number of tokens without stop words.](figures/tokens_diff.png "Difference between the number of tokens with and without stop words.")
+
+#### Interpretation
+
+Probably these features are not very useful for classification for two reasons. 
+First, we did not include a feature which indicates whether the tweet was posted before or after the character length increased.
+Another solution for that problem would have been to divide the number of characters by 140 or 280 depending on the character liming at the posting time.
+Second, it would have made more sense to include the difference between the tokens with and without stop word rather than both numbers independent.
+In this case, the classifier would not have to learn the dependency first.
 
 ### Time
 
