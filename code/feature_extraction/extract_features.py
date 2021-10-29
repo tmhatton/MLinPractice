@@ -16,10 +16,9 @@ from code.feature_extraction.feature_collector import FeatureCollector
 from code.feature_extraction.mention_num import MentionNum
 from code.feature_extraction.token_length import TokenLength
 from code.feature_extraction.hashtag_num import HashtagNum
-from code.feature_extraction.url_num import URLsNum
+from code.feature_extraction.list_counter import URLsNum, PhotosNum
 from code.feature_extraction.cap_letter_num import CapLettersNum
 from code.feature_extraction.punc_num import PunctuationNum
-from code.feature_extraction.photos_num import PhotosNum
 from code.feature_extraction.videos_num import VideosNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
 from code.feature_extraction.sentiment import Sentiment
