@@ -82,15 +82,24 @@ But since we want to use the punctuation of a tweet as a feature we did not use 
 
 ### Removing stop words
 
-The stop word remover removes all english stopwords from either the raw tweet or the tokenized tweet.
+The stop word remover removes all english stop words from either the raw tweet or the tokenized tweet.
 
 #### Design Decisions
 
+Often stop word do not contain much information. 
+Therefore, it is common to remove them. 
+Because we also want to count the number of words in a tweet that are somehow meaningful we also remove them.
+
 #### Implementation Details
+
+We use the english stop words from the `nltk` package. 
+The stop words include for example pronouns (e.g. I, me, my), common verbs (e.g. be, have, will), prepositions (e.g. over, under), and many more frequently used words.
 
 #### Results
 
-#### Interpretation
+ > **Example sentence:** Prof. Jeremy Petranka explains how #dataanalysis can identify policies that contribute to systemic #discrimination and #racism, and how data can also help change policies to make them more equitable
+
+ > **Sentence after stop word removal:** Prof. Jeremy Petranka explains ~~~how~~ #dataanalysis ~~can~~ identify policies ~~that~~ contribute ~~to~~ systemic #discrimination ~~and~~ #racism, ~~and how~~ data ~~can~~ also help change policies ~~to~~ make ~~them more~~ equitable
 
 ### Tokenize the tweet
 
