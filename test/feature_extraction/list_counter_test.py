@@ -1,8 +1,8 @@
 import unittest
 import pandas as pd
 
-from code.feature_extraction.list_counter import PhotosNum, URLsNum
-from code.util import COLUMN_PHOTOS, COLUMN_URLS
+from code.feature_extraction.list_counter import PhotosNum, URLsNum, HashtagNum
+from code.util import COLUMN_PHOTOS, COLUMN_URLS, COLUMN_HASHTAGS
 
 
 class PhotosNumTest(unittest.TestCase):
@@ -34,6 +34,23 @@ class URLsNumTest(unittest.TestCase):
         input_df[COLUMN_URLS] = [input_data]
 
         expected_output = [4]
+        output = self.extractor.fit_transform(input_df)
+
+        self.assertEqual(expected_output, output)
+
+
+class HashtagNumTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.INPUT_COLUMN = COLUMN_HASHTAGS
+        self.extractor = HashtagNum(self.INPUT_COLUMN)
+
+    def test_hashtag_num(self):
+        input_data = '''['hashtag', 'yolo', 'data']'''
+        input_df = pd.DataFrame([COLUMN_HASHTAGS])
+        input_df[COLUMN_HASHTAGS] = [input_data]
+
+        expected_output = [3]
         output = self.extractor.fit_transform(input_df)
 
         self.assertEqual(expected_output, output)
