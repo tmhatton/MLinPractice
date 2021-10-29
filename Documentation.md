@@ -103,30 +103,20 @@ The stop words include for example pronouns (e.g. I, me, my), common verbs (e.g.
 
 ### Tokenize the tweet
 
+The tokenizer splits the input text in its word tokens and returns them as a list. 
+
 #### Design Decisions
+
+To simplify the feature extraction we split the text contained in the `tweet` column into its word tokens.
+The list of word tokens is then used in the feature extraction step to determine the word count for example.
 
 #### Implementation Details
 
+We again used the `nltk` package to split the tweets first into sentences and then into words.
+
 #### Results
 
-#### Interpretation
-
-I'm following the "Design Decisions - Results - Interpretation" structure here,
-but you can also just use one subheading per preprocessing step to organize
-things (depending on what you do, that may be better structured).
-
-### Design Decisions
-
-Which kind of preprocessing steps did you implement? Why are they necessary
-and/or useful down the road?
-
-### Results
-
-Maybe show a short example what your preprocessing does.
-
-### Interpretation
-
-Probably, no real interpretation possible, so feel free to leave this section out.
+The sentence `"This is an example sentence"` is split by the tokenizer in the following tokens `["This", "is", "an", "example", "sentence"]`.
 
 ---
 
