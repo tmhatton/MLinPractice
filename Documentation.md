@@ -7,6 +7,8 @@ that.
 The following structure thus only covers preprocessing, feature extraction,
 dimensionality reduction, classification, and evaluation.
 
+---
+
 ## Evaluation
 
 ### Design Decisions
@@ -122,8 +124,36 @@ The sentence `"This is an example sentence"` is split by the tokenizer in the fo
 
 ## Feature Extraction
 
-Again, either structure among decision-result-interpretation or based on feature,
-up to you.
+### Media
+
+- number of photos
+- number of videos
+- number of urls
+
+### Tweet length
+
+- character length
+- token length (with and without stop words)
+
+### Time
+
+- weekday
+- times of day
+
+### Sentiment
+
+- polarity
+- subjectivity
+
+### Mentions & Hashtags
+
+- number of mentions
+- number of hashtags
+
+### Character based features
+
+- number of capital letters
+- number of punctuation
 
 ### Design Decisions
 
@@ -136,6 +166,8 @@ Can you say something about how the feature values are distributed? Maybe show s
 ### Interpretation
 
 Can we already guess which features may be more useful than others?
+
+---
 
 ## Dimensionality Reduction
 
@@ -156,6 +188,8 @@ Which features were selected / created? Do you have any scores to report?
 Can we somehow make sense of the dimensionality reduction results?
 Which features are the most important ones and why may that be the case?
 
+---
+
 ## Classification
 
 ### Design Decisions
@@ -174,3 +208,7 @@ selected setup: How well does it generalize to the test set?
 Which hyperparameter settings are how important for the results?
 How good are we? Can this be used in practice or are we still too bad?
 Anything else we may have learned?
+
+---
+
+## Results
