@@ -1,8 +1,8 @@
 import unittest
 import pandas as pd
 
-from code.feature_extraction.list_counter import PhotosNum, URLsNum
-from code.util import COLUMN_PHOTOS, COLUMN_URLS
+from code.feature_extraction.list_counter import PhotosNum, URLsNum, HashtagNum, MentionNum, TokenNum
+from code.util import COLUMN_PHOTOS, COLUMN_URLS, COLUMN_HASHTAGS, COLUMN_MENTIONS
 
 
 class PhotosNumTest(unittest.TestCase):
@@ -37,6 +37,57 @@ class URLsNumTest(unittest.TestCase):
         output = self.extractor.fit_transform(input_df)
 
         self.assertEqual(expected_output, output)
+
+
+class HashtagNumTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.INPUT_COLUMN = COLUMN_HASHTAGS
+        self.extractor = HashtagNum(self.INPUT_COLUMN)
+
+    def test_hashtag_num(self):
+        input_data = '''['hashtag', 'yolo', 'data']'''
+        input_df = pd.DataFrame([COLUMN_HASHTAGS])
+        input_df[COLUMN_HASHTAGS] = [input_data]
+
+        expected_output = [3]
+        output = self.extractor.fit_transform(input_df)
+
+        self.assertEqual(expected_output, output)
+
+
+class MentionNumTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.INPUT_COLUMN = COLUMN_MENTIONS
+        self.extractor = MentionNum(self.INPUT_COLUMN)
+
+    def test_mention_num(self):
+        input_data = '''[{'id': '2235729541', 'name': 'dogecoin', 'screen_name': 'dogecoin'}, {'id': '123432342', 'name': 'John Doe', 'screen_name': 'jodoe'}]'''
+        input_df = pd.DataFrame([COLUMN_MENTIONS])
+        input_df[COLUMN_MENTIONS] = [input_data]
+
+        expected_output = [2]
+        output = self.extractor.fit_transform(input_df)
+
+        self.assertEqual(expected_output, output)
+
+
+class TokenNumTest(unittest.TestCase):
+
+    def setUp(self) -> None:
+        self.INPUT_COLUMN = "input"
+        self.extractor = TokenNum(self.INPUT_COLUMN)
+
+    def test_token_length(self):
+        input_text = "['This', 'is', 'an', 'example', 'sentence']"
+        output = [5]
+
+        input_df = pd.DataFrame()
+        input_df[self.INPUT_COLUMN] = [input_text]
+        token_length = self.extractor.fit_transform(input_df)
+
+        self.assertEqual(output, token_length)
 
 
 if __name__ == '__main__':
