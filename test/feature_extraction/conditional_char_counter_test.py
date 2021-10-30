@@ -1,7 +1,7 @@
 import unittest
 import pandas as pd
 from code.util import COLUMN_TWEET
-from code.feature_extraction.punc_num import PunctuationNum
+from code.feature_extraction.conditional_char_counter import PunctuationNum
 
 
 class PunctuationNumTest(unittest.TestCase):
@@ -10,7 +10,7 @@ class PunctuationNumTest(unittest.TestCase):
         self.INPUT_COLUM = COLUMN_TWEET
         self.extractor = PunctuationNum(self.INPUT_COLUM)
 
-    def test_punc_num_(self):
+    def test_punc_num(self):
         input_text = "Hallo ... das ist ein Text mit 40 ZEICHEN und 8 Satzzeichen!!!!?"
         output = [[8]]
 

@@ -1,6 +1,7 @@
 """
 Extracts features that are based on characters and a condition if the characters should be counted.
 """
+import string
 import numpy as np
 
 from code.feature_extraction.feature_extractor import FeatureExtractor
@@ -33,3 +34,15 @@ class ConditionalCharCounter(FeatureExtractor):
     def _check_condition(self, char: str):
         """Checks if the condition for counting the character is met."""
         return True
+
+
+class PunctuationNum(ConditionalCharCounter):
+    """
+    Class to count the number of punctuation characters in an input.
+    """
+
+    def __init__(self, input_column):
+        super().__init__(input_column, input_column + SUFFIX_PUNC_NUM)
+
+    def _check_condition(self, char: str):
+        return char in string.punctuation
