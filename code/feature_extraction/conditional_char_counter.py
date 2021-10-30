@@ -5,7 +5,7 @@ import string
 import numpy as np
 
 from code.feature_extraction.feature_extractor import FeatureExtractor
-from code.util import SUFFIX_PUNC_NUM
+from code.util import SUFFIX_PUNC_NUM, SUFFIX_CAP_LETTERS
 
 
 class ConditionalCharCounter(FeatureExtractor):
@@ -46,3 +46,15 @@ class PunctuationNum(ConditionalCharCounter):
 
     def _check_condition(self, char: str):
         return char in string.punctuation
+
+
+class CapLettersNum(ConditionalCharCounter):
+    """
+    Class to count the number of capital letters.
+    """
+
+    def __init__(self, input_column):
+        super().__init__(input_column, input_column + SUFFIX_CAP_LETTERS)
+
+    def _check_condition(self, char: str):
+        return char.isupper()

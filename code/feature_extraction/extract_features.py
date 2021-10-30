@@ -14,8 +14,7 @@ import numpy as np
 from code.feature_extraction.character_length import CharacterLength
 from code.feature_extraction.feature_collector import FeatureCollector
 from code.feature_extraction.list_counter import URLsNum, PhotosNum, HashtagNum, MentionNum, TokenNum
-from code.feature_extraction.cap_letter_num import CapLettersNum
-from code.feature_extraction.conditional_char_counter import PunctuationNum
+from code.feature_extraction.conditional_char_counter import PunctuationNum, CapLettersNum
 from code.feature_extraction.videos_num import VideosNum
 from code.feature_extraction.weekday_extractor import WeekdayExtractor
 from code.feature_extraction.sentiment import Sentiment
