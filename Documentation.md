@@ -1,11 +1,26 @@
 # Documentation
 
-Some introductory sentence(s). Data set and task are relatively fixed, so 
-probably you don't have much to say about them (unless you modifed them).
-If you haven't changed the application much, there's also not much to say about
-that.
-The following structure thus only covers preprocessing, feature extraction,
-dimensionality reduction, classification, and evaluation.
+
+## Introduction
+
+We - Micaela Barkman, Kai Dönnebrink, and Tom Hatton - as participants of the block seminar "Machine Learning in Practice" taught by Lucas Bechberger in the summer term 2021 at the Universität Osnabrück implemented a simple machine learning pipeline.
+It includes steps for preprocessing, feature extraction, classification, and evaluation.
+
+The goal of our machine learning pipeline was to create a Machine Learning model that can predict whether a tweet goes viral.
+In addition, the main focus was on the process of creating such a Machine Learning model.
+We worked in an agile way and followed different development practices like TDD, pair programming, and clean code guidelines.
+
+### Task Definition
+
+The task for the Machine Learning model is to predict whether a tweet related to the domain of data science goes viral, i.e. receives a certain number of likes and retweets.
+A tweet is defined as viral if the sum of likes and retweets is higher than a certain threshold.
+Initially the threshold is set to **50** but it can be changed by the user.
+
+### Data
+
+We used the dataset **Data Science Tweets 2010-2021** which can be found on [kaggle](https://www.kaggle.com/ruchi798/data-science-tweets) as training data.
+It contains tweets and some related meta information from verified accounts on Twitter that contain `data science`, `data analysis`, or `data visualization` from 2010 to 2021.
+For all tweets 38 values are captured including, for example, the date and time the tweet was posted, the twitter user, the tweet itself, and many more.
 
 ---
 
