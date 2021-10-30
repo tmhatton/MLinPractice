@@ -232,21 +232,29 @@ The most tweets are posted in the evening (~38.5%), followed by tweets that are 
 
 ![Shows the relative frequencies of the time categories.](figures/time.png "Relative frequencies of the time categories")
 
+Looking at the class distribution for each time category one can see that the morning class contain ~15 % viral tweets.
+It is followed by the night category with ~9.5 %, the evening category with ~8 %, and the afternoon category with ~7 %.
+
+![Shows the class distribution of each time category.](figures/dist_for_each_time.png "Class distribution for each time category")
+
 The relative frequencies of the weekdays are shown in the next figure. 
 Most tweets are posted on the days from Friday to Monday.
 After Monday the posting rate drops until it reaches it low at Thursday, where the posting rate on Thursday is about half the posting rate from Friday to Monday.
 
 ![Shows the relative frequencies of the weekdays.](figures/weekday.png "Relative frequencies of the weekdays")
 
+In the following figure the class distribution for each weekday is shown. 
+Again one can see that in comparison to the number of tweets per weekday the part of viral tweets is bigger if the number of tweets is lower.
+Therefore, Thursday contains the most viral tweets with ~14 % followed by Wednesday (~11.5 %) and (~10.5 %).
+The days with the most tweets, i.e. Friday, Saturday, Sunday, and Monday, just contain ~8 % viral tweets each.
+
+![Shows the class distribution of each weekday.](figures/dist_for_each_weekday.png "Class distribution for each weekday")
+
 #### Interpretation
 
 Time-related features are probably very important for the virality prediction.
 If more users are active at the posting time it could be more likely that a tweet goes viral. 
-However, the times included in the data will probably not bring the hoped-for success.
-Although, the times are all in the same time zone, this does not mean that the most followers of this tweeter are also in the same time zone and thus online.
-Because of that the times of day feature is probably noisy.
-If we had the time in the tweeter's time zone, the feature would be more valuable, since most of the Twitter user's followers probably live in the same time zone.
-However, the day of the week feature could be less noisy and therefore improve the prediction quality.
+As it can be seen in the data a good time to post something could be Thursday morning.
 
 ### Sentiment
 
@@ -270,13 +278,22 @@ Since it seems that viral and non-viral tweets are evenly distributed - except f
 
 ### Mentions & Hashtags
 
+#### Design Decisions
+
+Which features did you implement? What's their motivation and how are they computed?
+
+#### Results
+
+Can you say something about how the feature values are distributed? Maybe show some plots?
+
+#### Interpretation
+
+Can we already guess which features may be more useful than others?
+
 - number of mentions
 - number of hashtags
 
 ### Character based features
-
-- number of capital letters
-- number of punctuation
 
 #### Design Decisions
 
@@ -289,6 +306,9 @@ Can you say something about how the feature values are distributed? Maybe show s
 #### Interpretation
 
 Can we already guess which features may be more useful than others?
+
+- number of capital letters
+- number of punctuation
 
 ---
 
