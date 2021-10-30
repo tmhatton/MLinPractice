@@ -350,22 +350,10 @@ So, probably these features will not be as useful as others.
 
 ## Dimensionality Reduction
 
-If you didn't use any because you have only few features, just state that here.
-In that case, you can nevertheless apply some dimensionality reduction in order
-to analyze how helpful the individual features are during classification
-
-### Design Decisions
-
-Which dimensionality reduction technique(s) did you pick and why?
-
-### Results
-
-Which features were selected / created? Do you have any scores to report?
-
-### Interpretation
-
-Can we somehow make sense of the dimensionality reduction results?
-Which features are the most important ones and why may that be the case?
+We have a total of 14 feature extractors.
+Twelve of them return a single value, one is a one-hot encoding of four categories, and the last is a one-hot encoding of seven categories.
+So, each tweet can be represented as an array of length 23 (= 12 * 1 + 1 * 4 + 1 * 7). 
+Since this is not a lot we decided to not implement a dimensionality reduction technique.
 
 ---
 
