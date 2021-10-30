@@ -317,22 +317,34 @@ Both features seem to carry some information about the tweet's virality.
 So, they are probably useful to predict the virality of a tweet. 
 In general, it seems to be a good idea to use many hashtags to increase the audience of your tweet.
 
-### Character based features
+### Character level features
 
 #### Design Decisions
 
-Which features did you implement? What's their motivation and how are they computed?
+The last feature types are character level features. 
+We counted the number of punctuation marks and the number of capital letters.
+From both of them we promised ourselves that they would be beneficial for the virality prediction since they probably influence the visibility of a tweet.
+For example, if a person uses multiple exclamation points, it may indicate that the tweet is important to them.
+The same can be true when a person writes a tweet in all caps.
+
+Since both features are counts on the character level and depend on a condition we implemented the base class `ConditionalCharCounter` from which both feature extractors inherit.
 
 #### Results
 
-Can you say something about how the feature values are distributed? Maybe show some plots?
+The histogram shows the distribution of the number of punctuation marks in a tweet. 
+For visibility reasons all tweets with more than 50 punctuation marks were excluded (34 tweets).
+
+![Shows the histogram of the number of punctuation characters.](figures/punc.png "Histogram of the number of punctuation characters ")
+
+The next histogram shows the distribution of the number of capital letters in a tweet.
+For visibility reasons all tweets with more than 60 capital letters were excluded (248 tweets).
+
+![Shows the histogram of the number of capital characters.](figures/cap.png "Histogram of the number of capital characters")
 
 #### Interpretation
 
-Can we already guess which features may be more useful than others?
-
-- number of capital letters
-- number of punctuation
+Both histograms do not show a clear number range where the tweet is much more likely to become viral.
+So, probably these features will not be as useful as others.
 
 ---
 
