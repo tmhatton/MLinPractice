@@ -250,8 +250,23 @@ However, the day of the week feature could be less noisy and therefore improve t
 
 ### Sentiment
 
-- polarity
-- subjectivity
+#### Design Decisions
+
+Since it is likely that the tone of a tweet influences its virality, we decided to extract the sentiment of the tweet.
+The sentiment is split into the polarity, i.e. whether a tweet is positive or negative connoted, and the subjectivity, i.e. whether it expresses a person's opinion or describes the world as it is.
+
+#### Results
+
+The scatter plot shows the polarity vs. the subjectivity of the tweets with respect to the assigned labels. 
+It also visualizes the number of tweets that have a certain combination of polarity and subjectivity by the size of the marker.
+Overall, it can be said that the most tweets have a positive polarity and are rather objective. 
+Unfortunately, it seems that the viral and non-viral tweets are evenly distributed.
+
+![Shows the polarity vs subjectivity of the tweets with respect to the assigned labels.](figures/sentiment.png "Polarity vs. Subjectivity")
+
+#### Interpretation
+
+Since it seems that viral and non-viral tweets are evenly distributed - except for a few exceptions - the sentiment will probably not help to predict the virality of a tweet.
 
 ### Mentions & Hashtags
 
