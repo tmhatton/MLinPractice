@@ -280,18 +280,42 @@ Since it seems that viral and non-viral tweets are evenly distributed - except f
 
 #### Design Decisions
 
-Which features did you implement? What's their motivation and how are they computed?
+As the number of persons mentioned in a tweet and the number of used hashtags influences somehow the discoverability we include both numbers as features.
+The former one influences the discoverability because the persons that are mentioned gets a notification and will probably interact with the tweet.
+Because of the later one a tweet can be found better via the hashtag and is shown to all persons that follow a certain hashtag.
+Both feature extractors inherit again from the `ListCounter` class and use the column `mentions` or `hashtags` as input data.
 
 #### Results
 
-Can you say something about how the feature values are distributed? Maybe show some plots?
+In most tweets no person is mentioned (~56.5 %). 
+However, ~29 % mention one person and ~9 % mention two persons. 
+There are also even tweets iin which 18 persons are mentioned
+So, in theory a person can mention many persons but in practice it seems that most persons just mention up to two twitter users.
+
+![Shows the relative frequencies of the number of mentions.](figures/mentions.png "Relative frequencies of the number of mentions")
+
+Looking at the class distribution for each number of mentions it seems that it is most promising to mention many people.
+Further, mentioning just one or even no person is better than mentioning two or three people. 
+
+![Shows the class distribution for each mention.](figures/dist_mentions.png "Class distribution for each mention")
+
+In our data the range for the number of hashtags used in a tweet reaches from zero to 29. 
+With ~33.5 % the tweets without any hashtags is the biggest group.
+For an increasing number of hashtags used the number of tweets decreases. 
+
+![Shows the relative frequencies of the number of hashtags.](figures/hashtags.png "Relative frequencies of the number of hashtags")
+
+The class distribution for each number of hashtags shows that it could be beneficial to use more hashtags.
+The share of viral tweets increases from ~6 % for tweets with one hashtag to ~18 % for tweets with seven hashtags.
+Afterwards the share decreases.
+
+![Shows the class distribution for each hashtags.](figures/dist_hashtag.png "Class distribution for each hashtag")
 
 #### Interpretation
 
-Can we already guess which features may be more useful than others?
-
-- number of mentions
-- number of hashtags
+Both features seem to carry some information about the tweet's virality.
+So, they are probably useful to predict the virality of a tweet. 
+In general, it seems to be a good idea to use many hashtags to increase the audience of your tweet.
 
 ### Character based features
 
