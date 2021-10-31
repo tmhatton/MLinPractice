@@ -26,6 +26,27 @@ For all tweets 38 values are captured including, for example, the date and time 
 
 ## Evaluation
 
+### Evaluation metrics
+
+Evaluation metrics are used to make an informed decision about the quality of a classifier. 
+We implemented seven metrics namely Accuracy, Precision, Recall, F1 score, Cohen's Kappa, Log Loss, and ROC AUC.
+
+- **Accuracy:** Basic metrics that is not very reliable when dealing with an imbalanced data set. So, we just used it to evaluate the baselines performances but do not take it into account to choose the best performing Machine Learning model.
+- **Precision:** It is the ability of the classifier to not label a negative sample as positive. Because we also implemented the F1 score we again did not use it to choose the best performing model.
+- **Recall:** It is the ability of the classifier to label all positive samples correctly. We also did not use it directly because we also implemented the F1 score.
+- **F1 score:** Can be interpreted as the harmonic mean of the Precision and Recall. Best value is 1 and worst value is 0. Since it take Recall and Precision into account we used the F1 score to evaluate our Machine Learning model's performances.
+- **Cohen's Kappa:** Adjusts the accuracy of a model by the probability of a random agreement. Therefore, it is more stable against imbalanced data sets, which we have. So, we also used Cohen's Kappa to evaluate our Machine Learning models. 
+- **Log Loss:** For example, it is used as a metric in logistic regression and neural networks. Since we did not implement a Multi Layer Perceptron or a similar classifier we did not use it.
+- **ROC AUC:** Measures the Area Under the ROC Curve. So, it can be interpreted as the probability that the model ranks a random positive example higher than a random negative example. 
+
+### Baselines
+
+- Majority vote classifier
+- Random vote classifier
+- Always 'True' classifier
+- Always 'False' classifier
+- Label frequency classifier
+
 ### Design Decisions
 
 Which evaluation metrics did you use and why? 
