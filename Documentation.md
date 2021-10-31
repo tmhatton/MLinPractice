@@ -410,23 +410,58 @@ Since this is not a lot we decided to not implement a dimensionality reduction t
 
 ## Classification
 
-### Design Decisions
+Classification is the process of predicting the class of given data points. The task of classification predictive modeling 
+is an approximation to a mapping function (f) from input variables (X) to discrete output variables (y).
+For our pipeline we implemented four classifiers: K-Nearest Neighbor classifier, Support Vector machine classifier, Random Forest classifier 
+and Gaussian Naive Bayes classifier.
 
-Which classifier(s) did you use? Which hyperparameter(s) (with their respective
-candidate values) did you look at? What were your reasons for this?
+### K-Nearest Neighbor (KNN)
+The KNN classifier classifies a new instance based on its closest neighbors in the feature space.
 
-### Results
+#### Results
+We performed a systematic grid search to find the optimal value for the `n_neighbors` parameter. 
+For evaluation we took the Cohen's Kappa and the F1 score into account. 
 
-The big finale begins: What are the evaluation results you obtained with your
-classifiers in the different setups? Do you overfit or underfit? For the best
-selected setup: How well does it generalize to the test set?
+![Shows the results of the KNN hyperparameter optimization.](figures/KNN-mlflow.png "MLflow results of KNN hyperparameter optimization")
 
-### Interpretation
+The results show that the best value for `k` in our case is 1.
 
-Which hyperparameter settings are how important for the results?
-How good are we? Can this be used in practice or are we still too bad?
-Anything else we may have learned?
 
+### Support Vector Machine (SVM)
+Classifies a new instance based on its largest-margin hyperplane.
+
+#### Results
+We performed a systematic grid search to find the optimal value for the `C` and the `kernel` parameter. 
+For evaluation we took the Cohen's Kappa and the F1 score into account. 
+
+![Shows the results of the SVM hyperparameter optimization.](figures/SVM-mlflow.png "MLflow results of SVM hyperparameter optimization")
+
+The results show that the best values in our case are: `C = 10.0` and `kernel = sigmoid`.
+
+Some run combinations have been killed by the grid for exceeding wall time, since the time to compute scales with the size of the dataset.
+It would be recommended to test the LinearSVC classifier in future work, since it is more suitable for large datasets.
+
+
+### Random Forest (RF)
+Uses the output of multiple weaker classifiers in order to make a classification decision.
+
+#### Results
+We perfomed a systematic grid search to find the optimal value for the following parameters: `n_estimators, criterion` and `class_weights`.
+For evaluation we took the Cohen's Kappa and the F1 score into account. 
+![Shows the results of the RF hyperparameter optimization.](figures/RF-mlflow.png "RF results of SVM hyperparameter optimization")
+
+The results show that the best values in our case are: `n_estimators = 200`, `criterion = entropy` and `class_weights = None`.
+It should be noted that runs with higher values for `n_estimators` (values of 500 and 1000) were killed due to memory excess in the grid.
+
+
+### Gaussian Naive Bayes (NB)
+NB uses conditional probabilities for computing the probability of a given data point belonging to a given class.
+
+#### Results
+For NB, we did not perform hyperparameter optimization. The Naive Bayes GaussianNB classifier contains two parameters, `priors` and `var_smoothing`.
+The priors are being adjusted according to the data. The second parameter takes the portion of the largest variance of all features that is added to variances for calculation stability.
+We decided to keep the default values of the GaussianNB classifier.
 ---
+
 
 ## Results
