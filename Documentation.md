@@ -14,7 +14,7 @@ We worked in an agile way and followed different development practices like TDD,
 
 The task for the Machine Learning model is to predict whether a tweet related to the domain of data science goes viral, i.e. receives a certain number of likes and retweets.
 A tweet is defined as viral if the sum of likes and retweets is higher than a certain threshold.
-Initially the threshold is set to **50** but it can be changed by the user.
+Initially the threshold is set to `50` but it can be changed by the user.
 
 ### Data
 
@@ -50,18 +50,30 @@ We implemented five baseline classifiers namely the majority vote classifier, th
 - **Always 'False' classifier:** Returns always the label `False`. Is the same as the majority vote classifier in our case.
 - **Label frequency classifier:** Returns labels based on the label frequency in the training data. For our data it is ~90 % `False` and ~10 % `True`.
 
-### Design Decisions
+### Baseline results
 
-Which evaluation metrics did you use and why? 
-Which baselines did you use and why?
+| Classifier         | Data       | Accuracy     | F1 score   | Cohen's Kappa |
+| ------------------ | ---------- | -----------: | ---------: | ------------: |
+| Majority vote      | Training   | **0.9058**   | 0.0000     | 0.0000        |
+|                    | Validation | **0.9058**   | 0.0000     | 0.0000        |
+| Random vote        | Training   | 0.5000       | 0.1578     | -0.0007       |
+|                    | Validation | 0.4993       | 0.1601     | 0.0018        |
+| Always 'True'      | Training   | 0.0942       | **0.1721** | 0.0000        |
+|                    | Validation | 0.0942       | **0.1721** | 0.0000        |
+| Always 'False'     | Training   | **0.9058**   | 0.0000     | 0.0000        |
+|                    | Validation | **0.9058**   | 0.0000     | 0.0000        |
+| Label frequency    | Training   | 0.8296       | 0.0943     | **0.0002**    |
+|                    | Validation | 0.8307       | 0.0995     | **0.0061**    |
 
-### Results
+Because we have ~90 % negative labeled data points in our data sets it is not surprising that the majority vote and always 'False' classifier have the best accuracy. 
+Also, the label frequency classifier has a high accuracy with ~83 %. 
+With respect to the F1 score, the always 'True' classifier performs best with a value of 0.1721. 
+For the last metric, the Cohen's Kappa score, the label frequency classifier performs best even if it is not a good score.
 
-How do the baselines perform with respect to the evaluation metrics?
-
-### Interpretation
-
-Is there anything we can learn from these results?
+The results show that the accuracy is not a good evaluation metrics for our imbalanced data set.
+It also shows that the F1 score and Cohen's Kappa score are more appropriate to evaluate the Machine Learning model performances.
+Therefore, we just will use the two evaluation metrics in the classification step.
+Furthermore, the results show that the overall best baseline is the label frequency classifier which we will try to overcome.
 
 ---
 
