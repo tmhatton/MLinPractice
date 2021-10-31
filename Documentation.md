@@ -152,7 +152,7 @@ The stop words include for example pronouns (e.g. I, me, my), common verbs (e.g.
 
  > **Example sentence:** Prof. Jeremy Petranka explains how #dataanalysis can identify policies that contribute to systemic #discrimination and #racism, and how data can also help change policies to make them more equitable
 
- > **Sentence after stop word removal:** Prof. Jeremy Petranka explains ~~~how~~ #dataanalysis ~~can~~ identify policies ~~that~~ contribute ~~to~~ systemic #discrimination ~~and~~ #racism, ~~and how~~ data ~~can~~ also help change policies ~~to~~ make ~~them more~~ equitable
+ > **Sentence after stop word removal:** Prof. Jeremy Petranka explains ~~how~~ #dataanalysis ~~can~~ identify policies ~~that~~ contribute ~~to~~ systemic #discrimination ~~and~~ #racism, ~~and how~~ data ~~can~~ also help change policies ~~to~~ make ~~them more~~ equitable
 
 ### Tokenize the tweet
 
@@ -464,4 +464,15 @@ We decided to keep the default values of the GaussianNB classifier.
 ---
 
 
-## Results
+## Final Evaluation and Interpretation
+
+Given the results of our grid search, our best performing candidate classifier was the Random Forest Classifier with 200 estimators, the split criterion being the entropy and the class weights set to `None`.
+With this setup we achieved a Cohen's Kappa of ~0.138, an F1-score of ~0.159 and an accuracy of ~0.9086 on the validation set.
+The final evaluation on the test set confirms the validation results with a Cohen's Kappa of ~0.148, an F1-score of ~0.1698 and an accuracy of ~0.9095.
+
+These results show that, although not outperforming our baseline by large on accuracy, our Random Forest classifier was able to extract - at least to some extent - 
+certain relevant features and patterns from a tweet for a correct positive (or _true positive_) classification. This can be drawn from the F1-scores where our baseline - the "always false" classifier - gets the value 0 due to its inherent
+missing true positive classifications.
+---
+
+
