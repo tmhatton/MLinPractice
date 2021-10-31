@@ -461,6 +461,7 @@ NB uses conditional probabilities for computing the probability of a given data 
 For NB, we did not perform hyperparameter optimization. The Naive Bayes GaussianNB classifier contains two parameters, `priors` and `var_smoothing`.
 The priors are being adjusted according to the data. The second parameter takes the portion of the largest variance of all features that is added to variances for calculation stability.
 We decided to keep the default values of the GaussianNB classifier.
+
 ---
 
 
@@ -473,6 +474,7 @@ The final evaluation on the test set confirms the validation results with a Cohe
 These results show that, although not outperforming our baseline by large on accuracy, our Random Forest classifier was able to extract - at least to some extent - 
 certain relevant features and patterns from a tweet for a correct positive (or _true positive_) classification. This can be drawn from the F1-scores where our baseline - the "always false" classifier - gets the value 0 due to its inherent
 missing true positive classifications.
+
 ---
 
 
