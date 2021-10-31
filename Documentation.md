@@ -41,11 +41,14 @@ We implemented seven metrics namely Accuracy, Precision, Recall, F1 score, Cohen
 
 ### Baselines
 
-- Majority vote classifier
-- Random vote classifier
-- Always 'True' classifier
-- Always 'False' classifier
-- Label frequency classifier
+Baseline classifiers are used to have a minimum starting point that the machine learning models must exceed in order to add some value.
+We implemented five baseline classifiers namely the majority vote classifier, the random vote classifier, the always 'True' classifier, the always 'False' classifier, and the label frequency classifier.
+
+- **Majority vote classifier:** Returns always the label of the majority class which is in our case `False`. So, it is the same as the always 'False' classifier.
+- **Random vote classifier:** Returns uniform distributed labels. In our case it would return 50 % `True` and 50 % `False`.
+- **Always 'True' classifier:** Returns always the label `True`.
+- **Always 'False' classifier:** Returns always the label `False`. Is the same as the majority vote classifier in our case.
+- **Label frequency classifier:** Returns labels based on the label frequency in the training data. For our data it is ~90 % `False` and ~10 % `True`.
 
 ### Design Decisions
 
